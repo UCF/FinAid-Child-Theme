@@ -10,3 +10,7 @@ define( 'FINAID_THEME_JS_URL', FINAID_THEME_STATIC_URL . '/js' );
 define( 'FINAID_THEME_IMG_URL', FINAID_THEME_STATIC_URL . '/img' );
 
 
+/**
+ * Adds support for Yoast-generated breadcrumbs.
+ **/
+add_theme_support( 'yoast-seo-breadcrumbs' );
