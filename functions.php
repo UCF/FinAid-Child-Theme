@@ -1,4 +1,6 @@
 <?php
+namespace FinAid\Theme;
+
 
 // Theme foundation
 include_once 'includes/config.php';
