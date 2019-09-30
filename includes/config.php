@@ -2,6 +2,8 @@
 /**
  * Handle all theme configuration here
  **/
+namespace FinAid\Theme\Includes\Config;
+
 
 define( 'FINAID_THEME_URL', get_stylesheet_directory_uri() );
 define( 'FINAID_THEME_STATIC_URL', FINAID_THEME_URL . '/static' );
@@ -45,3 +47,15 @@ add_filter( 'acf/settings/load_json', __NAMESPACE__ . '\add_acf_load_path', 10, 
 if ( ! defined( 'WP_LOCAL_DEV' ) || ! WP_LOCAL_DEV ) {
     add_filter( 'acf/settings/show_admin', '__return_false' );
 }
+
+/**
+ * Initialization functions to be fired early when WordPress loads the theme.
+ */
+function init() {
+	// Adds support for Yoast-generated breadcrumbs.
+	add_theme_support( 'yoast-seo-breadcrumbs' );
+}
+
+add_action( 'after_setup_theme', __NAMESPACE__ . '\init', 11 );
+
+
