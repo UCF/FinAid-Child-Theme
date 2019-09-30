@@ -90,7 +90,7 @@
                             "custom_icon_set": "",
                             "default_label": "",
                             "default_value": "",
-                            "save_format": "object",
+                            "save_format": "class",
                             "allow_null": 0,
                             "show_preview": 1,
                             "enqueue_fa": 1,
@@ -157,5 +157,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1569864615
+    "modified": 1569864691
 }
