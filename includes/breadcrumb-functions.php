@@ -149,7 +149,7 @@ function filter_yoast_options_breadcrumbs( $options ) {
 	$options['breadcrumbs-sep'] = '';
 	// Force bolding on last breadcrumb items (consistent with Athena Framework
 	// styling; generated markup is modified in `breadcrumb_single_link`)
-	$options['breadcrumbs-boldlast'] = 'on';
+	$options['breadcrumbs-boldlast'] = true;
 
 	return $options;
 }
