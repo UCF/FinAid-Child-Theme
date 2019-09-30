@@ -2,7 +2,7 @@
 /**
  * Handle all theme configuration here
  **/
-namespace FinAid\Theme\Config;
+namespace FinAid\Theme\Includes\Config;
 
 
 define( 'FINAID_THEME_URL', get_stylesheet_directory_uri() );
