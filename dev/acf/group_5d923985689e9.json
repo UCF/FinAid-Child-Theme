@@ -1,0 +1,161 @@
+{
+    "key": "group_5d923985689e9",
+    "title": "Section Layout Fields",
+    "fields": [
+        {
+            "key": "field_5d9239967f3ed",
+            "label": "Layout",
+            "name": "finaid_section_layout",
+            "type": "select",
+            "instructions": "Choose the layout to use for the section.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default",
+                "icon-list": "Icon List"
+            },
+            "default_value": [
+                "default"
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_5d9239cf7f3ee",
+            "label": "Icon List Fields",
+            "name": "finaid_icon_list_fields",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5d9239967f3ed",
+                        "operator": "==",
+                        "value": "icon-list"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5d9239e77f3ef",
+                    "label": "Icon List Items",
+                    "name": "finaid_icon_list_items",
+                    "type": "repeater",
+                    "instructions": "The items of the icon list to display.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "collapsed": "field_5d923a3f7f3f1",
+                    "min": 0,
+                    "max": 0,
+                    "layout": "row",
+                    "button_label": "Add Item",
+                    "sub_fields": [
+                        {
+                            "key": "field_5d923a1c7f3f0",
+                            "label": "Icon",
+                            "name": "finaid_item_icon",
+                            "type": "font-awesome",
+                            "instructions": "Choose the icon to display",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "icon_sets": [
+                                "all"
+                            ],
+                            "custom_icon_set": "",
+                            "default_label": "",
+                            "default_value": "",
+                            "save_format": "class",
+                            "allow_null": 0,
+                            "show_preview": 1,
+                            "enqueue_fa": 1,
+                            "fa_live_preview": "",
+                            "choices": []
+                        },
+                        {
+                            "key": "field_5d923a3f7f3f1",
+                            "label": "Label",
+                            "name": "finaid_item_label",
+                            "type": "text",
+                            "instructions": "Enter the label to display next to the icon",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_5d923a547f3f2",
+                            "label": "Content",
+                            "name": "finaid_item_content",
+                            "type": "wysiwyg",
+                            "instructions": "Enter the content to be displayed under the icon and label",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "ucf_section"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1569865846
+}
