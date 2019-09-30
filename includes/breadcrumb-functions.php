@@ -134,3 +134,24 @@ function get_breadcrumb_markup() {
 
 	return $markup;
 }
+
+
+/**
+ * Filters editable Yoast breadcrumb options
+ *
+ * @since 1.0.0
+ * @author Jo Dickson
+ * @param array $options Array of `wpseo_titles` options + values
+ * @return array Modified array of options + values
+ */
+function filter_yoast_options_breadcrumbs( $options ) {
+	// Force breadcrumb separator value to always be empty
+	$options['breadcrumbs-sep'] = '';
+	// Force bolding on last breadcrumb items (consistent with Athena Framework
+	// styling; generated markup is modified in `breadcrumb_single_link`)
+	$options['breadcrumbs-boldlast'] = 'on';
+
+	return $options;
+}
+
+add_filter( 'option_wpseo_titles', __NAMESPACE__ . '\filter_yoast_options_breadcrumbs');
