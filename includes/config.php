@@ -41,3 +41,7 @@ function add_acf_load_path( $paths ) {
 }
 
 add_filter( 'acf/settings/load_json', __NAMESPACE__ . '\add_acf_load_path', 10, 1 );
+
+if ( ! defined( 'WP_LOCAL_DEV' ) || ! WP_LOCAL_DEV ) {
+    add_filter( 'acf/settings/show_admin', '__return_false' );
+}
