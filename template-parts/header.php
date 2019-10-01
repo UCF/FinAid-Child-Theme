@@ -1,23 +1,26 @@
 <?php
-$obj         = ucfwp_get_queried_object();
-$exclude_nav = get_field( 'page_header_exclude_nav', $obj );
-// Note/TODO: The following variable will be dynamic in a future PR in order to change the header's background and text color based on if a light or dark image is selected by the user
-$bg_color_class = 'bg-inverse'
+/**
+ * Modified default header template (aka "Header Lite"), used when
+ * no header image/video is selected for the page, and the page meta
+ * "Header Content - Type of Content" is set to "Title and subtitle".
+ *
+ * This header is very similar to the UCF WP Theme's `header-media.php`,
+ * but uses alternate classes on the top-most wrapper element, and excludes
+ * the `.header-media-controlfix` element at the bottom of the header.
+ */
+
+use FinAid\Theme\Includes\Header;
+
+$obj            = ucfwp_get_queried_object();
+$exclude_nav    = get_field( 'page_header_exclude_nav', $obj );
+$bg_image_srcs  = Header\get_default_picture_srcs( $obj );
+$bg_class       = Header\get_default_bg_class( $obj );
 ?>
 
-<div class="header-default mb-0 d-flex flex-column <?php echo $bg_color_class; ?>">
+<div class="header-default mb-0 d-flex flex-column <?php echo $bg_class; ?>">
     <div class="header-media-background-wrap">
         <div class="header-media-background media-background-container">
-            <?php
-            // Note/TODO: This markup and functionality is temporary, upcoming PR will have functionality that allows users to select a predefined header image or upload their own in the Customizer.
-            $temp_default_header_img    = FINAID_THEME_IMG_URL . '/default-headers/dark-geometric.jpg';
-            $temp_default_header_img_xs = FINAID_THEME_IMG_URL . '/default-headers/dark-geometric-xs.jpg';
-            ?>
-            <picture class="media-background-picture">
-				<source srcset="<?php echo $temp_default_header_img; ?>" media="(min-width: 576px)">
-                <source srcset="<?php echo $temp_default_header_img_xs; ?>" media="(max-width: 575px)">
-                <img class="media-background object-fit-cover" src="<?php echo $temp_default_header_img; ?>" alt="">
-            </picture>
+			<?php echo ucfwp_get_media_background_picture( $bg_image_srcs ); ?>
         </div>
     </div>
 
