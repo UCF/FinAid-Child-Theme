@@ -111,3 +111,4 @@ if ( ! defined( 'WP_LOCAL_DEV' ) || ! WP_LOCAL_DEV ) {
  * @author Jo Dickson
  */
 add_filter( 'athena_sc_enable_responsive_embeds', '__return_true' );
+add_filter( 'option_athena_sc_enable_responsive_embeds', '__return_true' );
