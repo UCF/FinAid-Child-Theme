@@ -97,7 +97,10 @@ add_filter( 'acf/fields/wysiwyg/toolbars', __NAMESPACE__ . '\acf_inline_text_too
 
 
 /**
- * TODO
+ * Disables ACF admin menu options on non-local development environments.
+ *
+ * @since 1.0.0
+ * @author Jim Barnes
  */
 if ( ! defined( 'WP_LOCAL_DEV' ) || ! WP_LOCAL_DEV ) {
     add_filter( 'acf/settings/show_admin', '__return_false' );
