@@ -1,0 +1,650 @@
+{
+    "key": "group_58f7a73f5fecc",
+    "title": "Page Header Fields",
+    "fields": [
+        {
+            "key": "field_590ca423f6654",
+            "label": "Header Content",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_59aed971c187c",
+            "label": "Header Content - Type of Content",
+            "name": "page_header_content_type",
+            "type": "radio",
+            "instructions": "Specify the type of content that should be displayed within the header.  Choose \"Title and subtitle\" to display a styled page title and optional subtitle, or choose \"Custom content\" to add any arbitrary content.  If \"Custom content\" is selected, a page title and subtitle are NOT included by default and should be added manually.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "title_subtitle": "Title and subtitle",
+                "custom": "Custom content"
+            },
+            "allow_null": 0,
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": "title_subtitle",
+            "layout": "vertical",
+            "return_format": "value"
+        },
+        {
+            "key": "field_58fe096728bcc",
+            "label": "Header Title Text",
+            "name": "page_header_title",
+            "type": "text",
+            "instructions": "Overrides the page title.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_59aed971c187c",
+                        "operator": "==",
+                        "value": "title_subtitle"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_58fe097f28bcd",
+            "label": "Header Subtitle Text",
+            "name": "page_header_subtitle",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_59aed971c187c",
+                        "operator": "==",
+                        "value": "title_subtitle"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5a0e009ff592e",
+            "label": "Page h1",
+            "name": "page_header_h1",
+            "type": "radio",
+            "instructions": "Specify which part of the page title to use as the h1 for the page.  Styling of the title\/subtitle will not be affected by this choice.",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_59aed971c187c",
+                        "operator": "==",
+                        "value": "title_subtitle"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "title": "Title Text",
+                "subtitle": "Subtitle Text"
+            },
+            "allow_null": 0,
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": "title",
+            "layout": "vertical",
+            "return_format": "value"
+        },
+        {
+            "key": "field_59aed93dc187b",
+            "label": "Header Custom Contents",
+            "name": "page_header_content",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_59aed971c187c",
+                        "operator": "==",
+                        "value": "custom"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_590ca453f6655",
+            "label": "Header Size",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_590ca47bf6656",
+            "label": "Header Height (sm+)",
+            "name": "page_header_height",
+            "type": "radio",
+            "instructions": "Height of the page header at the -sm breakpoint and above.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "header-media-default": "Default (500px)",
+                "header-media-fullscreen": "Fullscreen"
+            },
+            "allow_null": 0,
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": "header-media-default",
+            "layout": "vertical",
+            "return_format": "value"
+        },
+        {
+            "key": "field_590ca625f6657",
+            "label": "Header Images",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_58f7a778185ef",
+            "label": "Header Image (-sm+)",
+            "name": "page_header_image",
+            "type": "image",
+            "instructions": "Header image to display at the -sm breakpoint and up.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "header-img-sm",
+            "library": "all",
+            "min_width": 1200,
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "png,jpg,jpeg"
+        },
+        {
+            "key": "field_58f7a7b8185f0",
+            "label": "Header Image (-xs)",
+            "name": "page_header_image_xs",
+            "type": "image",
+            "instructions": "Header image to display at the -xs breakpoint.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "header-img",
+            "library": "all",
+            "min_width": 575,
+            "min_height": 575,
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "png,jpg,jpeg"
+        },
+        {
+            "key": "field_590ca64ef6659",
+            "label": "Header Video",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_58fe08bf28bc9",
+            "label": "Header Video (MP4)",
+            "name": "page_header_mp4",
+            "type": "file",
+            "instructions": "If a MP4 video is defined, video will be used instead of an image in the header at the -sm breakpoint and higher.  Note that videos will never be displayed at the -xs breakpoint, so a fallback header image should always be provided when using video.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "mp4"
+        },
+        {
+            "key": "field_58fe08ff28bca",
+            "label": "Header Video (WebM)",
+            "name": "page_header_webm",
+            "type": "file",
+            "instructions": "Supplemental video format used by supported browsers for optimized performance.  Note that a MP4 must at least be provided for video to be displayed in the header.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "webm"
+        },
+        {
+            "key": "field_590c84c7a1360",
+            "label": "Header Video Loop",
+            "name": "page_header_video_loop",
+            "type": "true_false",
+            "instructions": "If checked, and a header video is available, the header video will loop indefinitely.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Loop video indefinitely",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5a564fecfb51d",
+            "label": "Navigation",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5a0dead0cd525",
+            "label": "Exclude Primary Site Navigation",
+            "name": "page_header_exclude_nav",
+            "type": "true_false",
+            "instructions": "Controls whether or not the primary site navigation should be displayed at the top of the page.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Exclude site navigation",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5a56501afb51e",
+            "label": "Include Subnavigation",
+            "name": "page_header_include_subnav",
+            "type": "true_false",
+            "instructions": "Enable this setting to display an affixed subnavigation bar below the page header.  Requires the Automatic Sections Menu plugin to be activated, and for at least one section within the page's content to be configured to appear in the navbar.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Include subnavigation",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5d655b35e8948",
+            "label": "Subnavigation Link Population",
+            "name": "page_header_subnav_link_population",
+            "type": "select",
+            "instructions": "Specify how links in the subnavigation menu should be populated.  By default, the menu will be populated automatically based on sections included in the page.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5a56501afb51e",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "automatic": "Automatic link detection",
+                "custom": "Use a custom set of links"
+            },
+            "default_value": [
+                "automatic"
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_5d655bc3e8949",
+            "label": "Custom Subnavigation Links",
+            "name": "page_header_subnav_links",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5d655b35e8948",
+                        "operator": "==",
+                        "value": "custom"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "field_5d655d3ee894a",
+            "min": 1,
+            "max": 0,
+            "layout": "block",
+            "button_label": "Add Link",
+            "sub_fields": [
+                {
+                    "key": "field_5d655f1ae894e",
+                    "label": "General",
+                    "name": "",
+                    "type": "tab",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placement": "top",
+                    "endpoint": 0
+                },
+                {
+                    "key": "field_5d655d58e894b",
+                    "label": "URL",
+                    "name": "href",
+                    "type": "text",
+                    "instructions": "Accepts a standard URL (e.g. \"https:\/\/www.ucf.edu\/\") or page anchor (\"#my-anchor\").",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5d655d3ee894a",
+                    "label": "Link Text",
+                    "name": "link_text",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5d655dabe894c",
+                    "label": "Open Link in New Window",
+                    "name": "new_window",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_5d655e17e894d",
+                    "label": "Relationships (\"rel\" Attribute)",
+                    "name": "rel",
+                    "type": "text",
+                    "instructions": "Add a list of link types, separated by a single space (e.g. \"noopener nofollow\").  See <a href=\"https:\/\/developer.mozilla.org\/en-US\/docs\/Web\/HTML\/Link_types\">link types information<\/a> for more information.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "70",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5d655f32e894f",
+                    "label": "Advanced",
+                    "name": "",
+                    "type": "tab",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placement": "top",
+                    "endpoint": 0
+                },
+                {
+                    "key": "field_5d655f61e8950",
+                    "label": "List Item CSS Class",
+                    "name": "li_class",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5d655f70e8951",
+                    "label": "Link CSS Class",
+                    "name": "a_class",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5d656452a22fa",
+                    "label": "Layout",
+                    "name": "layout",
+                    "type": "text",
+                    "instructions": "Specify a custom layout for how this individual link is displayed.  Requires a custom layout to be registered for Section Menu Items in the Automatic Section Menus plugin.  See the <a href=\"https:\/\/github.com\/UCF\/Section-Menus-Shortcode\/wiki\/Customization\" target=\"_blank\">Automatic Section Menus plugin documentation<\/a> for more information.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ],
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "all"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": ""
+}
