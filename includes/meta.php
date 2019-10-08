@@ -23,3 +23,19 @@ function enqueue_frontend_assets() {
 }
 
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_frontend_assets', 11 );
+
+
+/**
+ * Enqueue admin styles and scripts
+ *
+ * @since 1.0.0
+ * @author Jo Dickson
+ */
+function enqueue_admin_assets( $hook ) {
+	$theme = wp_get_theme();
+	$theme_version = $theme->get( 'Version' );
+
+	wp_enqueue_style( 'admin-style-child', FINAID_THEME_CSS_URL . '/admin.min.css', array( 'acf-input' ), $theme_version );
+}
+
+add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\enqueue_admin_assets', 11, 1 );
