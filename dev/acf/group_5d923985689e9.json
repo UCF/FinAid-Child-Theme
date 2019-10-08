@@ -30,6 +30,31 @@
             "placeholder": ""
         },
         {
+            "key": "field_5d9ca92819a1c",
+            "label": "Section Content",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5d9239967f3ed",
+                        "operator": "==",
+                        "value": "default"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
             "key": "field_5d9b84da6091e",
             "label": "Basic Section Settings",
             "name": "section_fields",
@@ -512,5 +537,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1570481115
+    "modified": 1570548128
 }
