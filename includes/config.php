@@ -93,7 +93,38 @@ function acf_inline_text_toolbar( $toolbars ) {
 	$toolbars['Inline Text'][1] = array( 'bold', 'italic', 'link', 'unlink', 'undo', 'redo' );
 	return $toolbars;
 }
+
 add_filter( 'acf/fields/wysiwyg/toolbars', __NAMESPACE__ . '\acf_inline_text_toolbar' );
+
+
+/**
+ * Moves the page WYSIWYG editor to a placeholder field within the
+ * Section Fields group.
+ *
+ * @since 1.0.0
+ * @author Jo Dickson
+ * @return void
+ */
+function acf_section_wysiwyg_position() {
+?>
+<script type="text/javascript">
+	(function($) {
+		$(document).ready(function(){
+			// 5d9ca92819a1c = "Basic Section Content" Message field (placeholder)
+			$('.acf-field-5d9ca92819a1c .acf-input').append( $('#postdivrich') );
+		});
+	})(jQuery);
+</script>
+<style type="text/css">
+	.acf-field #wp-content-editor-tools {
+		background: transparent;
+		padding-top: 0;
+	}
+</style>
+<?php
+}
+
+add_action( 'acf/input/admin_head', __NAMESPACE__ . '\acf_section_wysiwyg_position' );
 
 
 /**
