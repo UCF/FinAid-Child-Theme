@@ -1,5 +1,11 @@
-.acf-editor-wrap[data-toolbar='inline_text'] iframe {
-  // sass-lint:disable-block no-important
-  height: 100px !important;
-  min-height: 0 !important;
+.acf-editor-wrap[data-toolbar='inline_text'] {
+  // sass-lint:disable-block no-important no-qualifying-elements
+  iframe {
+    height: 100px !important;
+    min-height: 0 !important;
+  }
+
+  .wp-editor-container textarea.wp-editor-area {
+    height: 124px !important;
+  }
 }
