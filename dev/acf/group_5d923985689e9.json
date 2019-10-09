@@ -57,7 +57,7 @@
         {
             "key": "field_5d9b84da6091e",
             "label": "Basic Section Settings",
-            "name": "section_fields",
+            "name": "section",
             "type": "group",
             "instructions": "",
             "required": 0,
@@ -80,7 +80,7 @@
                 {
                     "key": "field_58f8d03d1abb3",
                     "label": "Background Color",
-                    "name": "section_background_color",
+                    "name": "background_color",
                     "type": "select",
                     "instructions": "Select the background color of the section.",
                     "required": 0,
@@ -122,7 +122,7 @@
                 {
                     "key": "field_59088a54aa936",
                     "label": "Custom Background Color",
-                    "name": "section_background_color_custom",
+                    "name": "background_color_custom",
                     "type": "color_picker",
                     "instructions": "",
                     "required": 0,
@@ -145,7 +145,7 @@
                 {
                     "key": "field_59089420aa937",
                     "label": "Text Color",
-                    "name": "section_text_color",
+                    "name": "text_color",
                     "type": "select",
                     "instructions": "Override the default text color within the section.\r\n\r\nNote that if you picked a predefined color in the Background Color field, an accessible text color will already be applied.",
                     "required": 0,
@@ -196,7 +196,7 @@
                 {
                     "key": "field_59089624aa938",
                     "label": "Custom Text Color",
-                    "name": "section_text_color_custom",
+                    "name": "text_color_custom",
                     "type": "color_picker",
                     "instructions": "",
                     "required": 0,
@@ -219,7 +219,7 @@
                 {
                     "key": "field_58f8d0611abb4",
                     "label": "Background Image (-sm+)",
-                    "name": "section_background_image",
+                    "name": "background_image",
                     "type": "image",
                     "instructions": "The background image to display behind the section at the -sm breakpoint and up (576px+ wide).",
                     "required": 0,
@@ -243,7 +243,7 @@
                 {
                     "key": "field_58f8d08b1abb5",
                     "label": "Background Image (-xs)",
-                    "name": "section_background_image_xs",
+                    "name": "background_image_xs",
                     "type": "image",
                     "instructions": "The background image to display behind the section at the -xs breakpoint (<=575px wide).  This image is only displayed when a -sm background image has also been selected.",
                     "required": 0,
@@ -537,5 +537,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1570548128
+    "modified": 1570649958
 }
