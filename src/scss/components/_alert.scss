@@ -1,0 +1,15 @@
+.alert-success {
+  @include gradient-y(lighten($alert-success-bg, 12%), $alert-success-bg);
+}
+
+.alert-info {
+  @include gradient-y(lighten($alert-info-bg, 12%), $alert-info-bg);
+}
+
+.alert-warning {
+  @include gradient-y(lighten($alert-warning-bg, 12%), $alert-warning-bg);
+}
+
+.alert-danger {
+  @include gradient-y(lighten($alert-danger-bg, 12%), $alert-danger-bg);
+}
