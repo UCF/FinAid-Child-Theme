@@ -346,7 +346,7 @@
                     "label": "Heading Level",
                     "name": "heading_level",
                     "type": "select",
-                    "instructions": "",
+                    "instructions": "Choose what heading level to use for headings in this list.  Pick a heading level that makes sense in relation to the rest of the page you're including it on; font size\/styling of headings is not affected by this choice.",
                     "required": 0,
                     "conditional_logic": [
                         [
@@ -475,7 +475,7 @@
                     "key": "field_5d923a3f7f3f1",
                     "label": "Heading",
                     "name": "heading",
-                    "type": "wysiwyg",
+                    "type": "text",
                     "instructions": "Enter the heading text to display next to the bullet icon.",
                     "required": 1,
                     "conditional_logic": [
@@ -493,10 +493,10 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "tabs": "all",
-                    "toolbar": "inline_text",
-                    "media_upload": 0,
-                    "delay": 0
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
                 },
                 {
                     "key": "field_5d923a547f3f2",
@@ -537,5 +537,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1570718814
+    "modified": 1571169771
 }

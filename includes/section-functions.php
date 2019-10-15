@@ -7,33 +7,6 @@ namespace FinAid\Theme\Includes\Sections;
 
 
 /**
- * Returns properly-formatted content within a list item's heading.
- * This function MUST be used in a `have_rows()` loop!
- *
- * @since 1.0.0
- * @author Jo Dickson
- * @param bool $filter_content Whether or not HTML formatting should be applied
- *             to the content. Set to false to just return texturized text.
- * @return string Inner heading content
- */
-function get_list_item_heading_content( $filter_content=true ) {
-	$heading_content = '';
-	if ( $filter_content ) {
-		// Get the Heading content with standard formatting,
-		// but without paragraphs applied:
-		$wpautop_priority = has_filter( 'the_content', 'wpautop' );
-		remove_filter( 'the_content', 'wpautop', $wpautop_priority );
-		$heading_content = nl2br( get_sub_field( 'heading' ) );
-		add_filter( 'the_content', 'wpautop', $wpautop_priority );
-	}
-	else {
-		$heading_content = wp_strip_all_tags( get_sub_field( 'heading' ) );
-	}
-	return $heading_content;
-}
-
-
-/**
  * Generic function that returns markup for a single list item
  * in any type of icon list  (sections with layout = 'list')
  *
@@ -86,7 +59,7 @@ function display_list_items( $section ) {
 
 		if ( $list_content_type === 'headings' ) {
 			// Append headings to inner list item content
-			$heading_content = get_list_item_heading_content();
+			$heading_content = wptexturize( get_sub_field( 'heading' ) );
 			$heading         = "<$heading_elem class=\"icon-list-item-heading\">$heading_content</$heading_elem>";
 			$content         = $heading . $content;
 		}
