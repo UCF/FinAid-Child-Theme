@@ -81,16 +81,14 @@ function display_list_items( $section ) {
 	$bullet_color      = get_field( 'list_bullet_color', $section );
 
 	while( have_rows( 'list_item' ) ) : the_row();
-		$content    = get_sub_field( 'content' );
+		$content    = '<div class="icon-list-item-content">' . get_sub_field( 'content' ) . '</div>';
 		$icon_class = 'icon-list-bullet';
 
 		if ( $list_content_type === 'headings' ) {
 			// Append headings to inner list item content
 			$heading_content = get_list_item_heading_content();
-			$heading         = "<$heading_elem>$heading_content</$heading_elem>";
+			$heading         = "<$heading_elem class=\"icon-list-item-heading\">$heading_content</$heading_elem>";
 			$content         = $heading . $content;
-			// Adjust icon sizing for lists that use headings
-			$icon_class      .= ' icon-list-bullet-lg';
 		}
 
 		// Determine necessary CSS classes for individual list item bullets
@@ -144,17 +142,27 @@ function display_list_before( $section ) {
 		return $retval;
 	}
 
-	$list_type = get_field( 'list_type', $section );
+	$list_type         = get_field( 'list_type', $section );
+	$list_content_type = get_field( 'list_content_type', $section );
+	$css_classes       = 'section-list icon-list';
+
+	if ( $list_content_type === 'headings' ) {
+		$css_classes .= ' icon-list-lg';
+	}
+
 	switch ( $list_type ) {
 		case 'numbered-list':
-			$retval = '<ol class="section-list icon-list icon-list-numbered">';
+			$css_classes .= ' icon-list-numbered';
+			$retval = "<ol class=\"$css_classes\">";
 			break;
 		case 'icon-list':
-			$retval = '<ul class="section-list icon-list icon-list-custom">';
+			$css_classes .= ' icon-list-custom';
+			$retval = "<ul class=\"$css_classes\">";
 			break;
 		case 'checklist':
 		default:
-			$retval = '<ul class="section-list icon-list icon-list-checkbox">';
+			$css_classes .= ' icon-list-checkbox';
+			$retval = "<ul class=\"$css_classes\">";
 			break;
 	}
 

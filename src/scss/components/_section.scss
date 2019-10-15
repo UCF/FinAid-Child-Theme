@@ -1,0 +1,138 @@
+body {
+  counter-reset: numberedlist;
+}
+
+.icon-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.icon-list-item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.icon-list-bullet-fonticon {
+  font-size: $icon-list-bullet-size;
+  text-align: center;
+  width: $icon-list-bullet-size * $icon-list-bullet-width-multiplier;
+
+  @include media-breakpoint-up(md) {
+    font-size: $icon-list-bullet-size-md;
+    width: $icon-list-bullet-size-md * $icon-list-bullet-width-multiplier;
+  }
+
+  .icon-list-lg & {
+    font-size: $icon-list-lg-bullet-size;
+    width: $icon-list-lg-bullet-size * $icon-list-lg-bullet-width-multiplier;
+
+    @include media-breakpoint-up(md) {
+      font-size: $icon-list-lg-bullet-size-md;
+      width: $icon-list-lg-bullet-size-md * $icon-list-lg-bullet-width-multiplier;
+    }
+  }
+}
+
+.icon-list-bullet-number {
+  border-radius: 50%;
+  font-weight: bold;
+  height: $icon-list-bullet-size;
+  line-height: $icon-list-bullet-size;
+  margin-left: ( ($icon-list-bullet-size * $icon-list-bullet-width-multiplier) - $icon-list-bullet-size ) / 2;
+  margin-right: ( ($icon-list-bullet-size * $icon-list-bullet-width-multiplier) - $icon-list-bullet-size ) / 2;
+  text-align: center;
+  width: $icon-list-bullet-size;
+
+  &::before {
+    content: counter(numberedlist);
+    counter-increment: numberedlist;
+  }
+
+  @include media-breakpoint-up(md) {
+    height: $icon-list-bullet-size-md;
+    line-height: $icon-list-bullet-size-md;
+    margin-left: ( ($icon-list-bullet-size-md * $icon-list-bullet-width-multiplier) - $icon-list-bullet-size-md ) / 2;
+    margin-right: ( ($icon-list-bullet-size-md * $icon-list-bullet-width-multiplier) - $icon-list-bullet-size-md ) / 2;
+    width: $icon-list-bullet-size-md;
+  }
+
+  .icon-list-lg & {
+    font-size: $font-size-base * $icon-list-lg-bullet-width-multiplier;
+    height: $icon-list-lg-bullet-size;
+    line-height: $icon-list-lg-bullet-size;
+    margin-left: ( ($icon-list-lg-bullet-size * $icon-list-lg-bullet-width-multiplier) - $icon-list-lg-bullet-size ) / 2;
+    margin-right: ( ($icon-list-lg-bullet-size * $icon-list-lg-bullet-width-multiplier) - $icon-list-lg-bullet-size ) / 2;
+    width: $icon-list-lg-bullet-size;
+
+    @include media-breakpoint-up(md) {
+      font-size: $font-size-base-md * $icon-list-lg-bullet-width-multiplier;
+      height: $icon-list-lg-bullet-size-md;
+      line-height: $icon-list-lg-bullet-size-md;
+      margin-left: ( ($icon-list-lg-bullet-size-md * $icon-list-lg-bullet-width-multiplier) - $icon-list-lg-bullet-size-md ) / 2;
+      margin-right: ( ($icon-list-lg-bullet-size-md * $icon-list-lg-bullet-width-multiplier) - $icon-list-lg-bullet-size-md) / 2;
+      width: $icon-list-lg-bullet-size-md;
+    }
+  }
+}
+
+.icon-list-item-heading,
+.icon-list-item-content {
+  // Set the width of the list item heading and content to leave
+  // space for the icon:
+  flex: 0 0 calc(100% - #{$icon-list-bullet-size * $icon-list-bullet-width-multiplier});
+  max-width: calc(100% - #{$icon-list-bullet-size * $icon-list-bullet-width-multiplier});
+
+  @include media-breakpoint-up(md) {
+    flex: 0 0 calc(100% - #{$icon-list-bullet-size-md * $icon-list-bullet-width-multiplier});
+    max-width: calc(100% - #{$icon-list-bullet-size-md * $icon-list-bullet-width-multiplier});
+  }
+
+  .icon-list-lg & {
+    flex: 0 0 calc(100% - #{$icon-list-lg-bullet-size * $icon-list-lg-bullet-width-multiplier});
+    max-width: calc(100% - #{$icon-list-lg-bullet-size * $icon-list-lg-bullet-width-multiplier});
+
+    @include media-breakpoint-up(md) {
+      flex: 0 0 calc(100% - #{$icon-list-lg-bullet-size-md * $icon-list-lg-bullet-width-multiplier});
+      max-width: calc(100% - #{$icon-list-lg-bullet-size-md * $icon-list-lg-bullet-width-multiplier});
+    }
+  }
+
+  // Align either the list item heading or list item content so that
+  // the first line of content is vertically centered with the icon:
+  .icon-list-bullet + & {
+    padding-top: calc(calc(#{$icon-list-bullet-size} - calc(1em * #{$line-height-base})) / 2);
+
+    @include media-breakpoint-up(md) {
+      padding-top: calc(calc(#{$icon-list-bullet-size-md} - calc(1em * #{$line-height-base})) / 2);
+    }
+
+    .icon-list-lg & {
+      padding-top: calc(calc(#{$icon-list-lg-bullet-size} - calc(1em * #{$headings-line-height})) / 2);
+
+      @include media-breakpoint-up(md) {
+        padding-top: calc(calc(#{$icon-list-lg-bullet-size-md} - calc(1em * #{$headings-line-height})) / 2);
+      }
+    }
+  }
+}
+
+.icon-list-item-content {
+  // Add left-hand padding to list item content in lists that use headings
+  // to emulate indentation:
+  .icon-list-item-heading + & {
+    padding-left: $icon-list-bullet-size * $icon-list-bullet-width-multiplier;
+
+    @include media-breakpoint-up(md) {
+      padding-left: $icon-list-bullet-size-md * $icon-list-bullet-width-multiplier;
+    }
+
+    .icon-list-lg & {
+      padding-left: $icon-list-lg-bullet-size * $icon-list-lg-bullet-width-multiplier;
+
+      @include media-breakpoint-up(md) {
+        padding-left: $icon-list-lg-bullet-size-md * $icon-list-lg-bullet-width-multiplier;
+      }
+    }
+  }
+}

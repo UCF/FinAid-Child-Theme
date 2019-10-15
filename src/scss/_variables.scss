@@ -1,1 +1,8 @@
-// ...
+$line-height-base: 1.65; // Should match UCF WP Theme value
+
+$icon-list-bullet-size: 1.5rem; // Font size to use for font icon bullets, width/height of numbered bullets
+$icon-list-bullet-size-md: 2rem; // Font size to use for font icon bullets, width/height of numbered bullets at -md+
+$icon-list-lg-bullet-size: 2.5rem; // Font size to use for large font icon bullets, width/height of large numbered bullets
+$icon-list-lg-bullet-size-md: 3rem; // Font size to use for large font icon bullets, width/height of large numbered bullets at -md+
+$icon-list-bullet-width-multiplier: 2; // Ratio to use when calculating a bullet's fixed width (amount of space the bullet sits in, centered)
+$icon-list-lg-bullet-width-multiplier: 1.5; // Ratio to use when calculating a large bullet's fixed width
