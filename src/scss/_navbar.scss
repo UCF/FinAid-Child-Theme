@@ -11,7 +11,8 @@
 
   @include media-breakpoint-up(lg) {
     font-size: .9rem;
-    margin-right: .25rem !important;
+    // !important necessary here to override .mr-lg-5 class added to elem in UCF WP Theme
+    margin-right: .25rem !important; // sass-lint:disable-line no-important
   }
 
   @include media-breakpoint-up(xl) {
