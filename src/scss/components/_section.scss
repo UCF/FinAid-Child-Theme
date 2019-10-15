@@ -36,6 +36,7 @@ body {
 
 .icon-list-bullet-number {
   border-radius: 50%;
+  font-family: $font-family-slab-serif;
   font-weight: bold;
   height: $icon-list-bullet-size;
   line-height: $icon-list-bullet-size;
@@ -114,6 +115,16 @@ body {
         padding-top: calc((#{$icon-list-lg-bullet-size-md} - (1em * #{$headings-line-height})) / 2);
       }
     }
+  }
+}
+
+.icon-list-item-heading {
+  font-family: $font-family-slab-serif;
+  font-size: 1.38rem;
+  line-height: $headings-line-height; // ensure heading line height is enforced on <strong>'s
+
+  @include media-breakpoint-up(md) {
+    font-size: 1.725rem;
   }
 }
 
