@@ -58,7 +58,7 @@ body {
   }
 
   .icon-list-lg & {
-    font-size: $font-size-base * $icon-list-lg-bullet-width-multiplier;
+    font-size: $font-size-xs * $icon-list-lg-bullet-width-multiplier; // reduce font size a bit
     height: $icon-list-lg-bullet-size;
     line-height: $icon-list-lg-bullet-size;
     margin-left: ( ($icon-list-lg-bullet-size * $icon-list-lg-bullet-width-multiplier) - $icon-list-lg-bullet-size ) / 2;
@@ -66,7 +66,7 @@ body {
     width: $icon-list-lg-bullet-size;
 
     @include media-breakpoint-up(md) {
-      font-size: $font-size-base-md * $icon-list-lg-bullet-width-multiplier;
+      font-size: $font-size-sm * $icon-list-lg-bullet-width-multiplier;
       height: $icon-list-lg-bullet-size-md;
       line-height: $icon-list-lg-bullet-size-md;
       margin-left: ( ($icon-list-lg-bullet-size-md * $icon-list-lg-bullet-width-multiplier) - $icon-list-lg-bullet-size-md ) / 2;
