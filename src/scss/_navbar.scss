@@ -1,0 +1,21 @@
+.navbar-brand {
+  font-size: .9rem;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 1rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    font-size: 1.25rem;
+  }
+
+  @include media-breakpoint-up(lg) {
+    font-size: .9rem;
+    // !important necessary here to override .mr-lg-5 class added to elem in UCF WP Theme
+    margin-right: .25rem !important; // sass-lint:disable-line no-important
+  }
+
+  @include media-breakpoint-up(xl) {
+    font-size: 1.25rem;
+  }
+}
