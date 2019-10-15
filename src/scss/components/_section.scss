@@ -119,8 +119,10 @@ body {
 
 .icon-list-item-content {
   // Add left-hand padding to list item content in lists that use headings
-  // to emulate indentation:
+  // to emulate indentation, and override width rules to accommodate:
   .icon-list-item-heading + & {
+    flex: 0 0 100%;
+    max-width: 100%;
     padding-left: $icon-list-bullet-size * $icon-list-bullet-width-multiplier;
 
     @include media-breakpoint-up(md) {
