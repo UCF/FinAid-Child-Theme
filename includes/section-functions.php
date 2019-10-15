@@ -272,3 +272,69 @@ function display_section_after( $retval, $section ) {
 }
 
 add_filter( 'ucf_section_display_after', __NAMESPACE__ . '\display_section_after', 11, 2 );
+
+
+/**
+ * Adds helpful columns to the All Sections admin view.
+ *
+ * @since 1.0.0
+ * @author Jo Dickson
+ * @param array $columns Column data
+ * @return array Modified column data
+ */
+function add_columns( $columns ) {
+	$columns['layout'] = 'Layout';
+	return $columns;
+}
+
+add_filter( 'manage_ucf_section_posts_columns', __NAMESPACE__ . '\add_columns' );
+add_filter( 'manage_edit-ucf_section_sortable_columns', __NAMESPACE__ . '\add_columns' );
+
+
+/**
+ * Adds data to columns in the All Sections admin view.
+ *
+ * @since 1.0.0
+ * @author Jo Dickson
+ * @param string $column Column name
+ * @param int $post_id Post ID
+ * @return void
+ */
+function add_column_data( $column, $post_id ) {
+	switch ( $column ) {
+		case 'layout':
+			$field = get_field_object( 'field_5d9239967f3ed' ); // section_layout key
+			$layout = get_field( 'section_layout', $post_id ) ?: 'default';
+			echo $field['choices'][$layout];
+			break;
+	}
+}
+
+add_action( 'manage_ucf_section_posts_custom_column', __NAMESPACE__ . '\add_column_data', 10, 2 );
+
+
+/**
+ * Adds sorting capabilities to custom admin columns.
+ *
+ * @since 1.0.0
+ * @author Jo Dickson
+ * @param array $vars Query vars
+ * @return array Modified query vars
+ */
+function add_column_ordering( $vars ) {
+	if (
+		isset( $vars['post_type'] )
+		&& $vars['post_type'] === 'ucf_section'
+		&& isset( $vars['orderby'] )
+		&& $vars['orderby'] === 'Layout'
+	) {
+		$vars = array_merge( $vars, array(
+			'meta_key' => 'section_layout',
+			'orderby'  => 'meta_value'
+		) );
+	}
+
+	return $vars;
+}
+
+add_filter( 'request', __NAMESPACE__ . '\add_column_ordering' );
