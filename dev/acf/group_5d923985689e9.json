@@ -5,7 +5,7 @@
         {
             "key": "field_5d9239967f3ed",
             "label": "Layout",
-            "name": "finaid_section_layout",
+            "name": "section_layout",
             "type": "select",
             "instructions": "Choose the layout to use for the section.",
             "required": 0,
@@ -269,7 +269,7 @@
         {
             "key": "field_5d9b99e65d5d0",
             "label": "List Settings",
-            "name": "list_fields",
+            "name": "list",
             "type": "group",
             "instructions": "",
             "required": 0,
@@ -292,7 +292,7 @@
                 {
                     "key": "field_5d9b920afb224",
                     "label": "List Type",
-                    "name": "list_type",
+                    "name": "type",
                     "type": "select",
                     "instructions": "",
                     "required": 0,
@@ -320,7 +320,7 @@
                 {
                     "key": "field_5d9b9233fb225",
                     "label": "Content Type",
-                    "name": "list_content_type",
+                    "name": "content_type",
                     "type": "radio",
                     "instructions": "Specify what content within each list item should look like.  Choose \"Basic List\" to create a simple list with small icons\/bullets, or \"List with Headings\" for a list with larger icons and a heading above each list item's content.",
                     "required": 0,
@@ -344,7 +344,7 @@
                 {
                     "key": "field_5d9b9bfe1f416",
                     "label": "Heading Level",
-                    "name": "list_heading_level",
+                    "name": "heading_level",
                     "type": "select",
                     "instructions": "",
                     "required": 0,
@@ -383,7 +383,7 @@
                 {
                     "key": "field_5d9b9704fb226",
                     "label": "Bullet Color",
-                    "name": "list_bullet_color",
+                    "name": "bullet_color",
                     "type": "select",
                     "instructions": "",
                     "required": 0,
@@ -440,7 +440,7 @@
                 {
                     "key": "field_5d923a1c7f3f0",
                     "label": "Icon",
-                    "name": "list_item_icon",
+                    "name": "icon",
                     "type": "font-awesome",
                     "instructions": "Choose the icon to display next to this list item.",
                     "required": 1,
@@ -474,7 +474,7 @@
                 {
                     "key": "field_5d923a3f7f3f1",
                     "label": "Heading",
-                    "name": "list_item_heading",
+                    "name": "heading",
                     "type": "wysiwyg",
                     "instructions": "Enter the heading text to display next to the bullet icon.",
                     "required": 1,
@@ -501,7 +501,7 @@
                 {
                     "key": "field_5d923a547f3f2",
                     "label": "List Item Content",
-                    "name": "list_item_content",
+                    "name": "content",
                     "type": "wysiwyg",
                     "instructions": "",
                     "required": 1,
@@ -537,5 +537,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1570649958
+    "modified": 1570718814
 }
