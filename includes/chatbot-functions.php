@@ -29,7 +29,7 @@ function get_chatbot_markup() {
  * @return string
  */
 function add_chatbot_to_footer() {
-	echo namespace\get_chatbot_markup();
+	echo get_chatbot_markup();
 }
 
 add_action( 'wp_footer', __NAMESPACE__ . '\add_chatbot_to_footer', 10, 0 );
