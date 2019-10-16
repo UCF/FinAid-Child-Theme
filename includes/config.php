@@ -59,11 +59,11 @@ add_action( 'customize_register', __NAMESPACE__ . '\define_customizer_sections',
  */
 function define_customizer_controls( $wp_customize ) {
 	$wp_customize->add_setting(
-		'enable_chatbot'
+		'chatbot_enabled'
 	);
 
 	$wp_customize->add_control(
-		'enable_chatbot',
+		'chatbot_enabled',
 		array(
 			'label'       => 'Enable KnightBot Chatbot',
 			'description' => 'When checked, the KnightBot code will be added to the site.',
