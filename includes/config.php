@@ -65,8 +65,8 @@ function define_customizer_controls( $wp_customize ) {
 	$wp_customize->add_control(
 		'chatbot_enabled',
 		array(
-			'label'       => 'Enable KnightBot Chatbot',
-			'description' => 'When checked, the KnightBot code will be added to the site.',
+			'label'       => 'Enable Chatbot',
+			'description' => 'When checked, the Chatbot code will be added to the site.',
 			'section'     => 'finaid_chatbot_section',
 			'type'        => 'checkbox'
 		)
