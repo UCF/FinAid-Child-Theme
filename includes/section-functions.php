@@ -496,3 +496,36 @@ function add_column_ordering( $vars ) {
 }
 
 add_filter( 'request', __NAMESPACE__ . '\add_column_ordering' );
+
+
+/**
+ * TODO
+ *
+ * @since 1.0.0
+ * @author Jo Dickson
+ * @param array $args the WP_Query args used to find choices
+ * @param array field the field array containing all attributes & settings
+ * @param int $post_id the current post ID being edited
+ * @return array Modified WP_Query args
+
+ */
+function filter_list_template_options( $args, $field, $post_id ) {
+	$args['meta_query'] = array(
+		'relation' => 'AND',
+		array(
+			'key'     => 'section_layout',
+			'value'   => 'list',
+			'compare' => '='
+		),
+		array(
+			'key'     => 'list_content_type',
+			'value'   => 'headings',
+			'compare' => '='
+		)
+	);
+
+	return $args;
+}
+
+add_filter( 'acf/fields/post_object/query/key=field_5da62c53dc26a', __NAMESPACE__ . '\filter_list_template_options', 10, 3 );
+
