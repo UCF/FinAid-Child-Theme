@@ -10,7 +10,6 @@ define( 'FINAID_THEME_STATIC_URL', FINAID_THEME_URL . '/static' );
 define( 'FINAID_THEME_CSS_URL', FINAID_THEME_STATIC_URL . '/css' );
 define( 'FINAID_THEME_JS_URL', FINAID_THEME_STATIC_URL . '/js' );
 define( 'FINAID_THEME_IMG_URL', FINAID_THEME_STATIC_URL . '/img' );
-define( 'FINAID_THEME_CUSTOMIZER_PREFIX', 'finaid_child_theme_' );
 
 
 /**
