@@ -186,7 +186,7 @@ function display_list_items( $section ) {
 		}
 
 		// Determine necessary CSS classes for individual list item bullets
-		switch ( get_field( 'list_type' ) ) {
+		switch ( get_field( 'list_type', $section ) ) {
 			case 'numbered-list':
 				$icon_class .= ' icon-list-bullet-number';
 				switch ( $bullet_color ) {

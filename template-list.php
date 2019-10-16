@@ -9,7 +9,8 @@ use FinAid\Theme\Includes\Sections;
 
 get_header(); the_post();
 
-$list = get_field( 'list' );
+$list = get_field( 'list', $post );
+
 if ( $list ):
 	$list_markup = Sections\display_list( $list );
 	$list_count  = Sections\get_list_count( $list, false );
