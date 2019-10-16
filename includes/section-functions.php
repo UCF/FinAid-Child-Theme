@@ -29,14 +29,18 @@ if ( ! is_array( $finaid_section_lists ) ) {
  * @since 1.0.0
  * @author Jo Dickson
  * @param WP_Post $section Section object
+ * @param bool $increment Whether or not the list count should be incremented
+ *             by 1 when this function is called
  * @return int The number of times the list has been included on the page
  */
-function get_list_count( $section ) {
+function get_list_count( $section, $increment=true ) {
 	global $finaid_section_lists;
 	$count = 0;
 
 	if ( isset( $finaid_section_lists['all-lists'][$section->ID] ) ) {
-		$finaid_section_lists['all-lists'][$section->ID]++;
+		if ( $increment ) {
+			$finaid_section_lists['all-lists'][$section->ID]++;
+		}
 		$count = $finaid_section_lists['all-lists'][$section->ID];
 	}
 	else {
@@ -49,18 +53,21 @@ function get_list_count( $section ) {
 
 
 /**
- * Returns a unique heading ID attribute value for a list item
- * within a list's `have_rows()` loop.
+ * Increments heading counts, and returns a unique heading ID attribute
+ * value for a list item within a list's `have_rows()` loop.
  *
  * NOTE: This function MUST be called only within a `have_rows()` loop.
  *
  * @since 1.0.0
  * @author Jo Dickson
  * @param WP_Post $section Section object
- * @param int $section_count Current count for the number of the given Section objects on the page
+ * @param int $section_count Current count for the number of the given Section
+ *                           objects on the page
+ * @param bool $increment Whether or not the heading count should be
+ *                        incremented by 1 when this function is called
  * @return string Heading ID attr value
  */
-function get_list_item_heading_id( $section, $section_count ) {
+function get_list_item_heading_id( $section, $section_count, $increment=true ) {
 	$heading_id = '';
 	if ( get_field( 'list_content_type', $section ) !== 'headings' ) { return $heading_id; }
 
@@ -70,9 +77,11 @@ function get_list_item_heading_id( $section, $section_count ) {
 	$section_count_key = 'list-' . $section->ID . '-' . $section_count;
 	$heading_count     = 0;
 
-	// Increment all headings count
+	// Get + optionally increment all headings count
 	if ( isset( $finaid_section_lists['all-headings'][$heading_slug] ) ) {
-		$finaid_section_lists['all-headings'][$heading_slug]++;
+		if ( $increment ) {
+			$finaid_section_lists['all-headings'][$heading_slug]++;
+		}
 		$heading_count = $finaid_section_lists['all-headings'][$heading_slug];
 	}
 	else {
@@ -82,19 +91,37 @@ function get_list_item_heading_id( $section, $section_count ) {
 
 	// Increment section + count-specific heading count
 	if ( isset( $finaid_section_lists[$section_count_key][$heading_slug] ) ) {
-		$finaid_section_lists[$section_count_key][$heading_slug]++;
+		if ( $increment ) {
+			$finaid_section_lists[$section_count_key][$heading_slug]++;
+		}
 	}
 	else {
 		$finaid_section_lists[$section_count_key][$heading_slug] = $heading_count;
 	}
 
-	// Increment $heading_id if there are more
+	// Append an increment to $heading_id if there are more
 	// than one of this heading present:
 	if ( $finaid_section_lists[$section_count_key][$heading_slug] > 1 ) {
 		$heading_id = $heading_id . '-' . $finaid_section_lists[$section_count_key][$heading_slug];
 	}
 
 	return $heading_id;
+}
+
+
+/**
+ * Returns whether or not the given section is a headings list.
+ *
+ * @since 1.0.0
+ * @author Jo Dickson
+ * @param WP_Post $section Section object
+ * @return bool
+ */
+function is_headings_list( $section ) {
+	return (
+		get_field( 'section_layout', $section ) === 'list'
+		&& get_field( 'list_content_type', $section ) === 'headings'
+	);
 }
 
 
@@ -281,6 +308,43 @@ function display_list( $section ) {
 	echo display_list_items( $section );
 	echo display_list_after( $section );
 
+	return trim( ob_get_clean() );
+}
+
+
+/**
+ * Returns anchor navigation for a list with headings.
+ *
+ * @since 1.0.0
+ * @author Jo Dickson
+ * @param WP_Post $section Section object
+ * @param int $section_count Current count for the number of the given Section objects on the page
+ * @return string HTML markup
+ */
+function display_list_nav( $section, $section_count ) {
+	if (
+		! is_headings_list( $section )
+		|| ! have_rows( 'list_item', $section )
+	) {
+		return '';
+	}
+
+	ob_start();
+?>
+<ul class="section-list-nav">
+	<?php
+	while( have_rows( 'list_item', $section ) ) : the_row();
+		$heading_id      = get_list_item_heading_id( $section, $section_count, false );
+		$heading_content = wptexturize( wp_strip_all_tags( get_sub_field( 'heading' ) ) );
+	?>
+	<li>
+		<a href="#<?php echo $heading_id; ?>">
+			<?php echo $heading_content; ?>
+		</a>
+	</li>
+	<?php endwhile; ?>
+</ul>
+<?php
 	return trim( ob_get_clean() );
 }
 
