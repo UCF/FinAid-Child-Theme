@@ -7,6 +7,98 @@ namespace FinAid\Theme\Includes\Sections;
 
 
 /**
+ * Define a global that stores the number of times lists
+ * and unique headings are used on the current page.
+ *
+ * @since 1.0.0
+ * @author Jo Dickson
+ */
+global $finaid_section_lists;
+if ( ! is_array( $finaid_section_lists ) ) {
+	$finaid_section_lists = array(
+		'all-headings' => array(),
+		'all-lists'    => array()
+	);
+}
+
+
+/**
+ * Returns the number of times the given list has been included
+ * on the current page (including the provided list object)
+ *
+ * @since 1.0.0
+ * @author Jo Dickson
+ * @param WP_Post $section Section object
+ * @return int The number of times the list has been included on the page
+ */
+function get_list_count( $section ) {
+	global $finaid_section_lists;
+	$count = 0;
+
+	if ( isset( $finaid_section_lists['all-lists'][$section->ID] ) ) {
+		$finaid_section_lists['all-lists'][$section->ID]++;
+		$count = $finaid_section_lists['all-lists'][$section->ID];
+	}
+	else {
+		$count = 1;
+		$finaid_section_lists['all-lists'][$section->ID] = $count;
+	}
+
+	return $count;
+}
+
+
+/**
+ * Returns a unique heading ID attribute value for a list item
+ * within a list's `have_rows()` loop.
+ *
+ * NOTE: This function MUST be called only within a `have_rows()` loop.
+ *
+ * @since 1.0.0
+ * @author Jo Dickson
+ * @param WP_Post $section Section object
+ * @param int $section_count Current count for the number of the given Section objects on the page
+ * @return string Heading ID attr value
+ */
+function get_list_item_heading_id( $section, $section_count ) {
+	$heading_id = '';
+	if ( get_field( 'list_content_type', $section ) !== 'headings' ) { return $heading_id; }
+
+	global $finaid_section_lists;
+	$heading_slug      = sanitize_title( get_sub_field( 'heading' ) );
+	$heading_id        = $heading_slug;
+	$section_count_key = 'list-' . $section->ID . '-' . $section_count;
+	$heading_count     = 0;
+
+	// Increment all headings count
+	if ( isset( $finaid_section_lists['all-headings'][$heading_slug] ) ) {
+		$finaid_section_lists['all-headings'][$heading_slug]++;
+		$heading_count = $finaid_section_lists['all-headings'][$heading_slug];
+	}
+	else {
+		$heading_count = 1;
+		$finaid_section_lists['all-headings'][$heading_slug] = $heading_count;
+	}
+
+	// Increment section + count-specific heading count
+	if ( isset( $finaid_section_lists[$section_count_key][$heading_slug] ) ) {
+		$finaid_section_lists[$section_count_key][$heading_slug]++;
+	}
+	else {
+		$finaid_section_lists[$section_count_key][$heading_slug] = $heading_count;
+	}
+
+	// Increment $heading_id if there are more
+	// than one of this heading present:
+	if ( $finaid_section_lists[$section_count_key][$heading_slug] > 1 ) {
+		$heading_id = $heading_id . '-' . $finaid_section_lists[$section_count_key][$heading_slug];
+	}
+
+	return $heading_id;
+}
+
+
+/**
  * Generic function that returns markup for a single list item
  * in any type of icon list  (sections with layout = 'list')
  *
@@ -44,23 +136,25 @@ function display_list_items( $section ) {
 	// Back out early if this section isn't a list, or is empty:
 	if (
 		get_field( 'section_layout', $section ) !== 'list'
-		|| ! have_rows( 'list_item' )
+		|| ! have_rows( 'list_item', $section )
 	) {
 		return $retval;
 	}
 
+	$section_count     = get_list_count( $section );
 	$list_content_type = get_field( 'list_content_type', $section );
 	$heading_elem      = $list_content_type === 'headings' ? get_field( 'list_heading_level', $section ) : null;
 	$bullet_color      = get_field( 'list_bullet_color', $section );
 
-	while( have_rows( 'list_item' ) ) : the_row();
+	while( have_rows( 'list_item', $section ) ) : the_row();
 		$content    = '<div class="icon-list-item-content">' . get_sub_field( 'content' ) . '</div>';
 		$icon_class = 'icon-list-bullet';
 
 		if ( $list_content_type === 'headings' ) {
 			// Append headings to inner list item content
+			$heading_id      = get_list_item_heading_id( $section, $section_count );
 			$heading_content = wptexturize( get_sub_field( 'heading' ) );
-			$heading         = "<$heading_elem class=\"icon-list-item-heading\">$heading_content</$heading_elem>";
+			$heading         = "<$heading_elem class=\"icon-list-item-heading\" id=\"$heading_id\">$heading_content</$heading_elem>";
 			$content         = $heading . $content;
 		}
 
