@@ -24,7 +24,8 @@ if ( ! is_array( $finaid_section_lists ) ) {
 
 /**
  * Returns the number of times the given list has been included
- * on the current page (including the provided list object)
+ * on the current page.  Optionally stores new list data + increments
+ * by 1.
  *
  * @since 1.0.0
  * @author Jo Dickson
@@ -33,7 +34,7 @@ if ( ! is_array( $finaid_section_lists ) ) {
  *             by 1 when this function is called
  * @return int The number of times the list has been included on the page
  */
-function get_list_count( $section, $increment=true ) {
+function get_list_count( $section, $increment=false ) {
 	global $finaid_section_lists;
 	$count = 0;
 
@@ -53,10 +54,28 @@ function get_list_count( $section, $increment=true ) {
 
 
 /**
- * Increments heading counts, and returns a unique heading ID attribute
- * value for a list item within a list's `have_rows()` loop.
+ * Stores list counts and creates empty list-specific data
+ * in the global $finaid_section_lists var.
  *
- * NOTE: This function MUST be called only within a `have_rows()` loop.
+ * @since 1.0.0
+ * @author Jo Dickson
+ * @param WP_Post $section Section object
+ * @return int The total number of this section object on the page
+ */
+function cache_list_data( $section ) {
+	global $finaid_section_lists;
+	$count       = get_list_count( $section, true );
+	$section_key = 'list-' . $section->ID . '-' . $count;
+
+	$finaid_section_lists[$section_key] = array();
+
+	return $count;
+}
+
+
+/**
+ * Stores individual list item data in the global
+ * $finaid_section_lists var.
  *
  * @since 1.0.0
  * @author Jo Dickson
@@ -65,23 +84,19 @@ function get_list_count( $section, $increment=true ) {
  *                           objects on the page
  * @param bool $increment Whether or not the heading count should be
  *                        incremented by 1 when this function is called
- * @return string Heading ID attr value
+ * @param array $list_item Array of list item repeater field data
+ * @param int $list_item_index Index order of the list item
+ * @return void
  */
-function get_list_item_heading_id( $section, $section_count, $increment=true ) {
-	$heading_id = '';
-	if ( get_field( 'list_content_type', $section ) !== 'headings' ) { return $heading_id; }
-
+function cache_list_item_data( $section, $section_count, $list_item, $list_item_index ) {
 	global $finaid_section_lists;
-	$heading_slug      = sanitize_title( get_sub_field( 'heading' ) );
-	$heading_id        = $heading_slug;
-	$section_count_key = 'list-' . $section->ID . '-' . $section_count;
-	$heading_count     = 0;
+	$section_key   = 'list-' . $section->ID . '-' . $section_count;
+	$heading_slug  = sanitize_title( $list_item['field_5d923a3f7f3f1'] ); // list_item_heading
+	$heading_count = 0;
 
-	// Get + optionally increment all headings count
+	// Get + increment all headings count
 	if ( isset( $finaid_section_lists['all-headings'][$heading_slug] ) ) {
-		if ( $increment ) {
-			$finaid_section_lists['all-headings'][$heading_slug]++;
-		}
+		$finaid_section_lists['all-headings'][$heading_slug]++;
 		$heading_count = $finaid_section_lists['all-headings'][$heading_slug];
 	}
 	else {
@@ -90,19 +105,39 @@ function get_list_item_heading_id( $section, $section_count, $increment=true ) {
 	}
 
 	// Increment section + count-specific heading count
-	if ( isset( $finaid_section_lists[$section_count_key][$heading_slug] ) ) {
-		if ( $increment ) {
-			$finaid_section_lists[$section_count_key][$heading_slug]++;
-		}
-	}
-	else {
-		$finaid_section_lists[$section_count_key][$heading_slug] = $heading_count;
-	}
+	$finaid_section_lists[$section_key][$list_item_index][$heading_slug] = $heading_count;
+}
+
+
+/**
+ * Returns a unique heading ID attribute value for a list item.
+ *
+ * @since 1.0.0
+ * @author Jo Dickson
+ * @param WP_Post $section Section object
+ * @param int $section_count Current count for the number of the given Section
+ *                           objects on the page
+ * @param bool $increment Whether or not the heading count should be
+ *                        incremented by 1 when this function is called
+ * @param array $list_item Array of list item repeater field data
+ * @param int $list_item_index Index order of the list item
+ * @return string Heading ID attr value
+ */
+function get_list_item_heading_id( $section, $section_count, $list_item, $list_item_index ) {
+	$heading_id = '';
+	if ( ! is_headings_list( $section ) ) { return $heading_id; }
+
+	global $finaid_section_lists;
+	$heading_slug = sanitize_title( get_sub_field( 'heading' ) );
+	$heading_id   = $heading_slug;
+	$section_key  = 'list-' . $section->ID . '-' . $section_count;
+
+	$heading_count = $finaid_section_lists[$section_key][$list_item_index][$heading_slug] ?? 1;
 
 	// Append an increment to $heading_id if there are more
 	// than one of this heading present:
-	if ( $finaid_section_lists[$section_count_key][$heading_slug] > 1 ) {
-		$heading_id = $heading_id . '-' . $finaid_section_lists[$section_count_key][$heading_slug];
+	if ( $heading_count > 1 ) {
+		$heading_id = $heading_id . '-' . $heading_count;
 	}
 
 	return $heading_id;
@@ -168,18 +203,20 @@ function display_list_items( $section ) {
 		return $retval;
 	}
 
-	$section_count     = get_list_count( $section );
+	$section_count     = cache_list_data( $section );
 	$list_content_type = get_field( 'list_content_type', $section );
 	$heading_elem      = $list_content_type === 'headings' ? get_field( 'list_heading_level', $section ) : null;
 	$bullet_color      = get_field( 'list_bullet_color', $section );
+	$list_item_index   = 0;
 
-	while( have_rows( 'list_item', $section ) ) : the_row();
+	while( have_rows( 'list_item', $section ) ) : $list_item = the_row();
+		cache_list_item_data( $section, $section_count, $list_item, $list_item_index );
 		$content    = '<div class="icon-list-item-content">' . get_sub_field( 'content' ) . '</div>';
 		$icon_class = 'icon-list-bullet';
 
 		if ( $list_content_type === 'headings' ) {
 			// Append headings to inner list item content
-			$heading_id      = get_list_item_heading_id( $section, $section_count );
+			$heading_id      = get_list_item_heading_id( $section, $section_count, $list_item, $list_item_index );
 			$heading_content = wptexturize( get_sub_field( 'heading' ) );
 			$heading         = "<$heading_elem class=\"icon-list-item-heading\" id=\"$heading_id\">$heading_content</$heading_elem>";
 			$content         = $heading . $content;
@@ -215,6 +252,9 @@ function display_list_items( $section ) {
 
 		// Finally, generate the list item markup, and append it to our list
 		$retval .= display_list_item( $content, $icon_class );
+
+		// Increment the list item counter
+		$list_item_index++;
 	endwhile;
 
 	return $retval;
@@ -333,8 +373,9 @@ function display_list_nav( $section, $section_count ) {
 ?>
 <ul class="section-list-nav">
 	<?php
-	while( have_rows( 'list_item', $section ) ) : the_row();
-		$heading_id      = get_list_item_heading_id( $section, $section_count, false );
+	$list_item_index = 0;
+	while( have_rows( 'list_item', $section ) ) : $list_item = the_row();
+		$heading_id      = get_list_item_heading_id( $section, $section_count, $list_item, $list_item_index );
 		$heading_content = wptexturize( wp_strip_all_tags( get_sub_field( 'heading' ) ) );
 	?>
 	<li>
@@ -342,7 +383,10 @@ function display_list_nav( $section, $section_count ) {
 			<?php echo $heading_content; ?>
 		</a>
 	</li>
-	<?php endwhile; ?>
+	<?php
+		$list_item_index++;
+	endwhile;
+	?>
 </ul>
 <?php
 	return trim( ob_get_clean() );

@@ -13,7 +13,7 @@ $list = get_field( 'list', $post );
 
 if ( $list ):
 	$list_markup = Sections\display_list( $list );
-	$list_count  = Sections\get_list_count( $list, false );
+	$list_count  = Sections\get_list_count( $list );
 	$list_nav    = Sections\display_list_nav( $list, $list_count );
 ?>
 
