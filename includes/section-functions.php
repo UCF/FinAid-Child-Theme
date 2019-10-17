@@ -543,7 +543,9 @@ add_filter( 'request', __NAMESPACE__ . '\add_column_ordering' );
 
 
 /**
- * TODO
+ * Filters the results for the list selection dropdown on the
+ * pages using the "List" template so that only list sections
+ * that use headings are available options.
  *
  * @since 1.0.0
  * @author Jo Dickson
