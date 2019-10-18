@@ -40,8 +40,52 @@ function define_customizer_sections( $wp_customize ) {
 	if ( defined( 'UCFWP_THEME_CUSTOMIZER_PREFIX' ) ) {
 		$wp_customize->remove_section( UCFWP_THEME_CUSTOMIZER_PREFIX . 'nav_settings' );
 	}
+
+	$wp_customize->add_section(
+		'finaid_chatbot_section',
+		array(
+			'title' => 'Chatbot Settings'
+		)
+	);
 }
 add_action( 'customize_register', __NAMESPACE__ . '\define_customizer_sections', 11 );
+
+/**
+ * Defines the controls used in the WordPress Customizer
+ * @author Jim Barnes
+ * @since 1.0.0
+ * @return void
+ */
+function define_customizer_controls( $wp_customize ) {
+	$wp_customize->add_setting(
+		'chatbot_enabled'
+	);
+
+	$wp_customize->add_control(
+		'chatbot_enabled',
+		array(
+			'label'       => 'Enable Chatbot',
+			'description' => 'When checked, the Chatbot code will be added to the site.',
+			'section'     => 'finaid_chatbot_section',
+			'type'        => 'checkbox'
+		)
+	);
+
+	$wp_customize->add_setting(
+		'chatbot_code'
+	);
+
+	$wp_customize->add_control(
+		'chatbot_code',
+		array(
+			'label'       => 'Chatbot Code',
+			'description' => 'The code to add to the site when using the Chatbot is enabled.',
+			'section'     => 'finaid_chatbot_section',
+			'type'        => 'textarea'
+		)
+	);
+}
+add_action( 'customize_register', __NAMESPACE__ . '\define_customizer_controls', 11 );
 
 
 /**
