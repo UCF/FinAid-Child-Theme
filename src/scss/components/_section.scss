@@ -24,7 +24,10 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-bottom: .5rem;
+
+  .icon-list-lg & {
+    margin-bottom: .5rem;
+  }
 }
 
 .icon-list-bullet-fonticon {
