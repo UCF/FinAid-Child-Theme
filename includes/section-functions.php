@@ -371,15 +371,15 @@ function display_list_nav( $section, $section_count ) {
 
 	ob_start();
 ?>
-<ul class="section-list-nav">
+<ul class="nav d-flex flex-column align-items-start section-list-nav">
 	<?php
 	$list_item_index = 0;
 	while( have_rows( 'list_item', $section ) ) : $list_item = the_row();
 		$heading_id      = get_list_item_heading_id( $section, $section_count, $list_item, $list_item_index );
 		$heading_content = wptexturize( wp_strip_all_tags( get_sub_field( 'heading' ) ) );
 	?>
-	<li>
-		<a href="#<?php echo $heading_id; ?>">
+	<li class="nav-item">
+		<a class="nav-link js-smoothscroll" href="#<?php echo $heading_id; ?>">
 			<?php echo $heading_content; ?>
 		</a>
 	</li>
