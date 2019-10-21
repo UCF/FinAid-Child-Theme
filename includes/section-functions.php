@@ -371,7 +371,7 @@ function display_list_nav( $section, $section_count ) {
 
 	ob_start();
 ?>
-<ul class="nav d-flex flex-column align-items-start section-list-nav">
+<ul class="nav nav-pills flex-column section-list-nav">
 	<?php
 	$list_item_index = 0;
 	while( have_rows( 'list_item', $section ) ) : $list_item = the_row();
@@ -379,7 +379,7 @@ function display_list_nav( $section, $section_count ) {
 		$heading_content = wptexturize( wp_strip_all_tags( $list_item['field_5d923a3f7f3f1'] ) ); // list_item_heading
 	?>
 	<li class="nav-item">
-		<a class="nav-link js-smoothscroll" href="#<?php echo $heading_id; ?>">
+		<a class="nav-link w-100 js-smoothscroll" href="#<?php echo $heading_id; ?>">
 			<?php echo $heading_content; ?>
 		</a>
 	</li>
