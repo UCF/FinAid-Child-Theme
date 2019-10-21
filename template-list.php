@@ -23,7 +23,7 @@ if ( $list ):
 			<div class="col-lg-4 p-3 p-md-4 mb-4 mb-sm-5 mb-lg-0 bg-faded affixed-sidebar sticky-top">
 				<?php echo $list_nav; ?>
 			</div>
-			<div class="col-lg-8">
+			<div class="col-lg-8 pl-lg-5">
 				<?php echo $list_markup; ?>
 			</div>
 		</div>

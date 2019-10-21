@@ -4,13 +4,30 @@ body {
 
 .icon-list {
   list-style-type: none;
+  margin-left: -($icon-list-bullet-size / $icon-list-bullet-width-multiplier);
   padding-left: 0;
+
+  @include media-breakpoint-up(md) {
+    margin-left: -($icon-list-bullet-size-md / $icon-list-bullet-width-multiplier);
+  }
+
+  &.icon-list-lg {
+    margin-left: -($icon-list-lg-bullet-size / $icon-list-lg-bullet-width-multiplier);
+
+    @include media-breakpoint-up(md) {
+      margin-left: -($icon-list-lg-bullet-size-md / $icon-list-lg-bullet-width-multiplier);
+    }
+  }
 }
 
 .icon-list-item {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+
+  .icon-list-lg & {
+    margin-bottom: .5rem;
+  }
 }
 
 .icon-list-bullet-fonticon {
@@ -122,6 +139,7 @@ body {
   font-family: $font-family-slab-serif;
   font-size: 1.38rem;
   line-height: $headings-line-height; // ensure heading line height is enforced on <strong>'s
+  margin-bottom: 1rem;
 
   @include media-breakpoint-up(md) {
     font-size: 1.725rem;
@@ -134,14 +152,14 @@ body {
   .icon-list-item-heading + & {
     flex: 0 0 100%;
     max-width: 100%;
-    padding-left: $icon-list-bullet-size * $icon-list-bullet-width-multiplier;
+    padding-left: $icon-list-bullet-size / $icon-list-bullet-width-multiplier;
 
     @include media-breakpoint-up(md) {
       padding-left: $icon-list-bullet-size-md * $icon-list-bullet-width-multiplier;
     }
 
     .icon-list-lg & {
-      padding-left: $icon-list-lg-bullet-size * $icon-list-lg-bullet-width-multiplier;
+      padding-left: $icon-list-lg-bullet-size / $icon-list-lg-bullet-width-multiplier;
 
       @include media-breakpoint-up(md) {
         padding-left: $icon-list-lg-bullet-size-md * $icon-list-lg-bullet-width-multiplier;
