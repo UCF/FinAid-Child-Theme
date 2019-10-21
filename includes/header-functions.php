@@ -42,27 +42,29 @@ add_filter( 'ucfwp_get_header_type', __NAMESPACE__ . '\get_header_type', 11, 2 )
  *               output format
  */
 function get_default_picture_srcs( $obj ) {
-	$bg_images         = array();
-	$fallback_image    = FINAID_THEME_IMG_URL . '/default-headers/dark-geometric.jpg';
-	$fallback_image_xs = FINAID_THEME_IMG_URL . '/default-headers/dark-geometric-xs.jpg';
-	// TODO retrieve from Customizer settings. Use absolute fallbacks only when necessary
-	$header_image    = $fallback_image;
-	$header_image_xs = $fallback_image_xs; // TODO only use fallback xs img if the regular header img is the fallback
+	$default_image    = FINAID_THEME_IMG_URL . '/default-headers/dark-lines.jpg';
+	$default_image_xs = FINAID_THEME_IMG_URL . '/default-headers/dark-lines-xs.jpg';
 
-	$bg_images['xl'] = $header_image;
-	if ( $header_image_xs ) {
-		$bg_images['xs'] = $header_image_xs;
-	}
-	$bg_images['fallback'] = $header_image;
-
-	return $bg_images;
+	return array(
+		'xl'       => $default_image,
+		'xs'       => $default_image_xs,
+		'fallback' => $default_image
+	);
 }
 
 
 /**
- * TODO
+ * Returns a fallback background-color modifier class to
+ * use on the default header template ("Header Lite").
+ *
+ * This class should apply a solid background color and provide
+ * an appropriate amount of contrast between the text color
+ * overlaid atop the header to meet WCAG 2.0 AA requirements.
+ *
+ * @since 1.0.0
+ * @author Jo Dickson
+ * @return string CSS class
  */
 function get_default_bg_class() {
-	// TODO retrieve from Customizer settings
-	return 'bg-inverse';
+	return 'bg-default';
 }
