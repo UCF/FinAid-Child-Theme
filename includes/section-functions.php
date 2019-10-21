@@ -77,6 +77,8 @@ function cache_list_data( $section ) {
  * Stores individual list item data in the global
  * $finaid_section_lists var.
  *
+ * NOTE: This function MUST be used within a `have_rows()` loop!
+ *
  * @since 1.0.0
  * @author Jo Dickson
  * @param WP_Post $section Section object
@@ -91,7 +93,7 @@ function cache_list_data( $section ) {
 function cache_list_item_data( $section, $section_count, $list_item, $list_item_index ) {
 	global $finaid_section_lists;
 	$section_key   = 'list-' . $section->ID . '-' . $section_count;
-	$heading_slug  = sanitize_title( $list_item['field_5d923a3f7f3f1'] ); // list_item_heading
+	$heading_slug  = sanitize_title( get_sub_field( 'list_item_heading' ) );
 	$heading_count = 0;
 
 	// Get + increment all headings count
@@ -112,6 +114,8 @@ function cache_list_item_data( $section, $section_count, $list_item, $list_item_
 /**
  * Returns a unique heading ID attribute value for a list item.
  *
+ * NOTE: This function MUST be used within a `have_rows()` loop!
+ *
  * @since 1.0.0
  * @author Jo Dickson
  * @param WP_Post $section Section object
@@ -128,7 +132,7 @@ function get_list_item_heading_id( $section, $section_count, $list_item, $list_i
 	if ( ! is_headings_list( $section ) ) { return $heading_id; }
 
 	global $finaid_section_lists;
-	$heading_slug = sanitize_title( $list_item['field_5d923a3f7f3f1'] ); // list_item_heading
+	$heading_slug = sanitize_title( get_sub_field( 'list_item_heading' ) );
 	$heading_id   = $heading_slug;
 	$section_key  = 'list-' . $section->ID . '-' . $section_count;
 
@@ -211,13 +215,13 @@ function display_list_items( $section ) {
 
 	while( have_rows( 'list_item', $section ) ) : $list_item = the_row();
 		cache_list_item_data( $section, $section_count, $list_item, $list_item_index );
-		$content    = '<div class="icon-list-item-content">' . $list_item['field_5d923a547f3f2'] . '</div>'; // list_item_content
+		$content    = '<div class="icon-list-item-content">' . get_sub_field( 'list_item_content' ) . '</div>';
 		$icon_class = 'icon-list-bullet';
 
 		if ( $list_content_type === 'headings' ) {
 			// Append headings to inner list item content
 			$heading_id      = get_list_item_heading_id( $section, $section_count, $list_item, $list_item_index );
-			$heading_content = wptexturize( $list_item['field_5d923a3f7f3f1'] ); // list_item_heading
+			$heading_content = wptexturize( get_sub_field( 'list_item_heading' ) );
 			$heading         = "<$heading_elem class=\"icon-list-item-heading\" id=\"$heading_id\">$heading_content</$heading_elem>";
 			$content         = $heading . $content;
 		}
@@ -240,7 +244,7 @@ function display_list_items( $section ) {
 				break;
 			case 'icon-list':
 				$icon_class .= ' icon-list-bullet-fonticon fa';
-				$icon_class .= ' ' . $list_item['field_5d923a1c7f3f0']; // list_item_icon
+				$icon_class .= ' ' . get_sub_field( 'list_item_icon' );
 				$icon_class .= " text-$bullet_color";
 				break;
 			case 'checklist':
@@ -376,7 +380,7 @@ function display_list_nav( $section, $section_count ) {
 	$list_item_index = 0;
 	while( have_rows( 'list_item', $section ) ) : $list_item = the_row();
 		$heading_id      = get_list_item_heading_id( $section, $section_count, $list_item, $list_item_index );
-		$heading_content = wptexturize( wp_strip_all_tags( $list_item['field_5d923a3f7f3f1'] ) ); // list_item_heading
+		$heading_content = wptexturize( wp_strip_all_tags( get_sub_field( 'list_item_heading' ) ) );
 	?>
 	<li class="nav-item">
 		<a class="nav-link w-100 js-smoothscroll" href="#<?php echo $heading_id; ?>">
