@@ -25,7 +25,7 @@ if ( $list ):
 
 	$container_class = 'container';
 	if ( ! $content_below_header ) {
-		$container_class .= ' mt-4 mt-sm-5';
+		$container_class .= ' mt-sm-5';
 	}
 	if ( ! $content_above_footer ) {
 		$container_class .= ' mb-5 pb-sm-4';
