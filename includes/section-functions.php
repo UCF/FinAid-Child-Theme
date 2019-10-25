@@ -507,6 +507,11 @@ function add_column_data( $column, $post_id ) {
 		case 'layout':
 			$field = get_field_object( 'field_5d9239967f3ed' ); // section_layout key
 			$layout = get_field( 'section_layout', $post_id ) ?: 'default';
+			// For whatever reason the layout value is sometimes
+			// an array; handle that here:
+			if ( is_array( $layout ) ) {
+				$layout = $layout[0];
+			}
 			echo $field['choices'][$layout];
 			break;
 	}
