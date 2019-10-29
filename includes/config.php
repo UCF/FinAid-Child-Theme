@@ -190,3 +190,22 @@ if ( ! defined( 'WP_LOCAL_DEV' ) || ! WP_LOCAL_DEV ) {
  */
 add_filter( 'athena_sc_enable_responsive_embeds', '__return_true' );
 add_filter( 'option_athena_sc_enable_responsive_embeds', '__return_true' );
+
+
+/**
+ * Enable Athena classes on generated FAQ markup.
+ *
+ * @since 1.0.0
+ * @author Jo Dickson
+ */
+add_filter( 'option_ucf_faq_include_athena_classes', '__return_true' );
+
+
+/**
+ * Force-disable FAQ archives in favor of controlling
+ * FAQ lists manually via pages on this site.
+ *
+ * @since 1.0.0
+ * @author Jo Dickson
+ */
+add_filter( 'option_ucf_faq_disable_faq_archive', '__return_true' );
