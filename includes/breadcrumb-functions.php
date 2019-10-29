@@ -19,6 +19,10 @@ function filter_yoast_options_breadcrumbs( $options ) {
 	// Force bolding on last breadcrumb items (consistent with Athena Framework
 	// styling; generated markup is modified in `breadcrumb_single_link`)
 	$options['breadcrumbs-boldlast'] = true;
+	// Force "Taxonomy to show in breadcrumbs for content types"
+	// for FAQs to always be set to "None" (this site manages all
+	// FAQ archives manually using pages)
+	$options['post_types-faq-maintax'] = 0;
 
 	return $options;
 }
