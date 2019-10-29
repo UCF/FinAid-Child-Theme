@@ -139,6 +139,7 @@ function breadcrumb_links( $crumbs ) {
 			$faq_page     = get_page_by_path( 'faq' );
 			if (
 				$faq_page
+				&& $faq_page->post_status === 'publish'
 				&& $current_post
 				&& $current_post->post_type === 'faq'
 			) {
