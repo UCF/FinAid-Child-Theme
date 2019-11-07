@@ -6,3 +6,13 @@ $icon-list-lg-bullet-size: 2.5rem; // Font size to use for large font icon bulle
 $icon-list-lg-bullet-size-md: 3rem; // Font size to use for large font icon bullets, width/height of large numbered bullets at -md+
 $icon-list-bullet-width-multiplier: 2; // Ratio to use when calculating a bullet's fixed width (amount of space the bullet sits in, centered)
 $icon-list-lg-bullet-width-multiplier: 2; // Ratio to use when calculating a large bullet's fixed width
+
+$timeline-border-color: #000; // should match $brand-secondary
+$timeline-border-width: 3px; // should match $border-width-thicker
+$timeline-item-gap: 2.5em; // space between the main timeline and each item bullet
+$timeline-item-bullet-gap: .6em; // space between item bullet and heading
+$timeline-item-bullet-size: .5em; // width + height of each item bullet
+$timeline-heading-font-size: 1em;
+$timeline-heading-line-height: $line-height-base;
+$timeline-heading-margin: .5em;
+$timeline-heading-height: $timeline-heading-font-size * $timeline-heading-line-height;

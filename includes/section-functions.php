@@ -403,7 +403,30 @@ function display_list_nav( $section, $section_count ) {
  * @return string HTML markup
  */
 function display_timeline_items( $section ) {
-	// TODO
+	$retval = '';
+
+	// Back out early if this section isn't a timeline, or is empty:
+	if (
+		get_field( 'section_layout', $section ) !== 'timeline'
+		|| ! have_rows( 'timeline_item', $section )
+	) {
+		return $retval;
+	}
+
+	while( have_rows( 'timeline_item', $section ) ) : $timeline_item = the_row();
+		$heading = get_sub_field( 'heading' );
+		$retval .= "<dt class=\"timeline-heading\">$heading</dt>";
+		if ( have_rows( 'bullets' ) ) {
+			while( have_rows( 'bullets' ) ) : $bullet_data = the_row();
+				$bullet = get_sub_field( 'bullet' );
+				if ( $bullet ) {
+					$retval .= "<dd class=\"timeline-content\">$bullet</dd>";
+				}
+			endwhile;
+		}
+	endwhile;
+
+	return $retval;
 }
 
 
@@ -417,7 +440,7 @@ function display_timeline_items( $section ) {
  * @return string HTML markup
  */
 function display_timeline_before( $section ) {
-	return '<dl>';
+	return '<dl class="timeline">';
 }
 
 
