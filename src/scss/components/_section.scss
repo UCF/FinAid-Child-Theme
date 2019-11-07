@@ -234,4 +234,8 @@
 .timeline-content {
   display: list-item;
   margin-left: 1.5em + $timeline-item-gap;
+
+  br + br {
+    display: none;
+  }
 }

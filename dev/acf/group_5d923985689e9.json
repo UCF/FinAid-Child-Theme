@@ -553,7 +553,7 @@
                     "name": "heading",
                     "type": "text",
                     "instructions": "",
-                    "required": 0,
+                    "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
@@ -591,7 +591,7 @@
                             "name": "bullet",
                             "type": "wysiwyg",
                             "instructions": "",
-                            "required": 0,
+                            "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
@@ -600,7 +600,7 @@
                             },
                             "default_value": "",
                             "tabs": "all",
-                            "toolbar": "full",
+                            "toolbar": "inline_text",
                             "media_upload": 0,
                             "delay": 0
                         }
@@ -626,5 +626,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1573140677
+    "modified": 1573142985
 }

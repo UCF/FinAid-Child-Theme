@@ -418,7 +418,12 @@ function display_timeline_items( $section ) {
 		$retval .= "<dt class=\"timeline-heading\">$heading</dt>";
 		if ( have_rows( 'bullets' ) ) {
 			while( have_rows( 'bullets' ) ) : $bullet_data = the_row();
-				$bullet = get_sub_field( 'bullet' );
+				// Remove paragraphs from inner bullet contents
+				$wpautop_priority = has_filter( 'the_content', 'wpautop' );
+				remove_filter( 'the_content', 'wpautop', $wpautop_priority );
+				$bullet = nl2br( get_sub_field( 'bullet' ) );
+				add_filter( 'the_content', 'wpautop', $wpautop_priority );
+
 				if ( $bullet ) {
 					$retval .= "<dd class=\"timeline-content\">$bullet</dd>";
 				}
