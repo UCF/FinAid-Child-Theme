@@ -394,6 +394,67 @@ function display_list_nav( $section, $section_count ) {
 
 
 /**
+ * Returns markup for all headings and items in a timeline
+ * (sections with layout = 'timeline')
+ *
+ * @author Jo Dickson
+ * @since 1.0.0
+ * @param WP_Post $section Section object
+ * @return string HTML markup
+ */
+function display_timeline_items( $section ) {
+	// TODO
+}
+
+
+/**
+ * Returns opening markup for a timeline
+ * (sections with layout = 'timeline')
+ *
+ * @author Jo Dickson
+ * @since 1.0.0
+ * @param WP_Post $section Section object
+ * @return string HTML markup
+ */
+function display_timeline_before( $section ) {
+	return '<dl>';
+}
+
+
+/**
+ * Returns closing markup for a timeline
+ * (sections with layout = 'timeline')
+ *
+ * @author Jo Dickson
+ * @since 1.0.0
+ * @param WP_Post $section Section object
+ * @return string HTML markup
+ */
+function display_timeline_after( $section ) {
+	return '</dl>';
+}
+
+
+/**
+ * Returns complete markup for a timeline (sections with layout = 'timeline')
+ *
+ * @since 1.0.0
+ * @author Jo Dickson
+ * @param WP_Post $section Section object
+ * @return string HTML markup
+ */
+function display_timeline( $section ) {
+	ob_start();
+
+	echo display_timeline_before( $section );
+	echo display_timeline_items( $section );
+	echo display_timeline_after( $section );
+
+	return trim( ob_get_clean() );
+}
+
+
+/**
  * Returns opening markup around a section, depending on the
  * given section's layout.
  *
@@ -411,6 +472,9 @@ function display_section_before( $retval, $section, $class, $title, $section_id 
 	switch ( $layout ) {
 		case 'list':
 			$retval = display_list_before( $section );
+			break;
+		case 'timeline':
+			$retval = display_timeline_before( $section );
 			break;
 		case 'default':
 		default:
@@ -438,6 +502,9 @@ function display_section_content( $retval, $section ) {
 		case 'list':
 			$retval = display_list_items( $section );
 			break;
+		case 'timeline':
+			$retval = display_timeline_items( $section );
+			break;
 		case 'default':
 		default:
 			break;
@@ -464,6 +531,9 @@ function display_section_after( $retval, $section ) {
 	switch ( $layout ) {
 		case 'list':
 			$retval = display_list_after( $section );
+			break;
+		case 'timeline':
+			$retval = display_timeline_after( $section );
 			break;
 		case 'default':
 		default:
