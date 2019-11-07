@@ -17,7 +17,8 @@
             },
             "choices": {
                 "default": "Basic Section",
-                "list": "List"
+                "list": "List",
+                "timeline": "Timeline"
             },
             "default_value": [
                 "default"
@@ -518,6 +519,111 @@
                     "delay": 0
                 }
             ]
+        },
+        {
+            "key": "field_5dc1ef171fa7f",
+            "label": "Timeline",
+            "name": "timeline",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5d9239967f3ed",
+                        "operator": "==",
+                        "value": "timeline"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5dc32021b57e9",
+                    "label": "Timeline Items",
+                    "name": "item",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "collapsed": "field_5dc3210dcf278",
+                    "min": 1,
+                    "max": 0,
+                    "layout": "row",
+                    "button_label": "Add Timeline Item",
+                    "sub_fields": [
+                        {
+                            "key": "field_5dc3210dcf278",
+                            "label": "Heading",
+                            "name": "heading",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_5dc3211ecf279",
+                            "label": "Bullets",
+                            "name": "bullets",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "collapsed": "",
+                            "min": 1,
+                            "max": 0,
+                            "layout": "block",
+                            "button_label": "Add Bullet",
+                            "sub_fields": [
+                                {
+                                    "key": "field_5dc3212ecf27a",
+                                    "label": "Bullet",
+                                    "name": "bullet",
+                                    "type": "wysiwyg",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "tabs": "all",
+                                    "toolbar": "full",
+                                    "media_upload": 0,
+                                    "delay": 0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "location": [
@@ -537,5 +643,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1571169771
+    "modified": 1573138875
 }
