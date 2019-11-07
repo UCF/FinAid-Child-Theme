@@ -445,6 +445,10 @@ function display_timeline_items( $section ) {
  * @return string HTML markup
  */
 function display_timeline_before( $section ) {
+	if ( get_field( 'section_layout', $section ) !== 'timeline' ) {
+		return '';
+	}
+
 	return '<dl class="timeline">';
 }
 
@@ -459,6 +463,10 @@ function display_timeline_before( $section ) {
  * @return string HTML markup
  */
 function display_timeline_after( $section ) {
+	if ( get_field( 'section_layout', $section ) !== 'timeline' ) {
+		return '';
+	}
+
 	return '</dl>';
 }
 
