@@ -602,7 +602,7 @@
                             "tabs": "all",
                             "toolbar": "inline_text",
                             "media_upload": 0,
-                            "delay": 0
+                            "delay": 1
                         }
                     ]
                 }
@@ -626,5 +626,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1573142985
+    "modified": 1573144889
 }
