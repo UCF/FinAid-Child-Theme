@@ -1,0 +1,12 @@
+.small,
+small {
+  font-size: $small-font-size;
+}
+
+.table {
+  font-size: $table-font-size;
+
+  @include media-breakpoint-up(md) {
+    font-size: $table-font-size-md;
+  }
+}
