@@ -394,6 +394,103 @@ function display_list_nav( $section, $section_count ) {
 
 
 /**
+ * Returns markup for all headings and items in a timeline
+ * (sections with layout = 'timeline')
+ *
+ * @author Jo Dickson
+ * @since 1.0.0
+ * @param WP_Post $section Section object
+ * @return string HTML markup
+ */
+function display_timeline_items( $section ) {
+	$retval = '';
+
+	// Back out early if this section isn't a timeline, or is empty:
+	if (
+		get_field( 'section_layout', $section ) !== 'timeline'
+		|| ! have_rows( 'timeline_item', $section )
+	) {
+		return $retval;
+	}
+
+	while( have_rows( 'timeline_item', $section ) ) : $timeline_item = the_row();
+		$heading = get_sub_field( 'heading' );
+		$retval .= "<dt class=\"timeline-heading\">$heading</dt>";
+		if ( have_rows( 'bullets' ) ) {
+			while( have_rows( 'bullets' ) ) : $bullet_data = the_row();
+				// Remove paragraphs from inner bullet contents
+				$wpautop_priority = has_filter( 'the_content', 'wpautop' );
+				remove_filter( 'the_content', 'wpautop', $wpautop_priority );
+				$bullet = nl2br( get_sub_field( 'bullet' ) );
+				add_filter( 'the_content', 'wpautop', $wpautop_priority );
+
+				if ( $bullet ) {
+					$retval .= "<dd class=\"timeline-content\">$bullet</dd>";
+				}
+			endwhile;
+		}
+	endwhile;
+
+	return $retval;
+}
+
+
+/**
+ * Returns opening markup for a timeline
+ * (sections with layout = 'timeline')
+ *
+ * @author Jo Dickson
+ * @since 1.0.0
+ * @param WP_Post $section Section object
+ * @return string HTML markup
+ */
+function display_timeline_before( $section ) {
+	if ( get_field( 'section_layout', $section ) !== 'timeline' ) {
+		return '';
+	}
+
+	return '<dl class="timeline">';
+}
+
+
+/**
+ * Returns closing markup for a timeline
+ * (sections with layout = 'timeline')
+ *
+ * @author Jo Dickson
+ * @since 1.0.0
+ * @param WP_Post $section Section object
+ * @return string HTML markup
+ */
+function display_timeline_after( $section ) {
+	if ( get_field( 'section_layout', $section ) !== 'timeline' ) {
+		return '';
+	}
+
+	return '</dl>';
+}
+
+
+/**
+ * Returns complete markup for a timeline (sections with layout = 'timeline')
+ *
+ * @since 1.0.0
+ * @author Jo Dickson
+ * @param WP_Post $section Section object
+ * @return string HTML markup
+ */
+function display_timeline( $section ) {
+	ob_start();
+
+	echo display_timeline_before( $section );
+	echo display_timeline_items( $section );
+	echo display_timeline_after( $section );
+
+	return trim( ob_get_clean() );
+}
+
+
+/**
  * Returns opening markup around a section, depending on the
  * given section's layout.
  *
@@ -411,6 +508,9 @@ function display_section_before( $retval, $section, $class, $title, $section_id 
 	switch ( $layout ) {
 		case 'list':
 			$retval = display_list_before( $section );
+			break;
+		case 'timeline':
+			$retval = display_timeline_before( $section );
 			break;
 		case 'default':
 		default:
@@ -438,6 +538,9 @@ function display_section_content( $retval, $section ) {
 		case 'list':
 			$retval = display_list_items( $section );
 			break;
+		case 'timeline':
+			$retval = display_timeline_items( $section );
+			break;
 		case 'default':
 		default:
 			break;
@@ -464,6 +567,9 @@ function display_section_after( $retval, $section ) {
 	switch ( $layout ) {
 		case 'list':
 			$retval = display_list_after( $section );
+			break;
+		case 'timeline':
+			$retval = display_timeline_after( $section );
 			break;
 		case 'default':
 		default:
