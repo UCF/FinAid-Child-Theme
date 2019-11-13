@@ -132,6 +132,7 @@ function breadcrumb_links( $crumbs ) {
 	if ( is_array( $crumbs ) && count( $crumbs ) > 1 ) {
 		$current_crumb       = $crumbs[count( $crumbs ) - 1];
 		$current_post        = null;
+
 		if ( isset( $current_crumb['id'] ) ) {
 			// Prefix single FAQs with a link to a top-level FAQ
 			// page (at /faq/), if it exists:
@@ -151,6 +152,17 @@ function breadcrumb_links( $crumbs ) {
 				$current_crumb = array_pop( $crumbs );
 				array_push( $crumbs, $faq_crumb, $current_crumb );
 			}
+		} elseif ( is_array( $current_crumb ) && isset( $current_crumb['term'] ) && $current_crumb['term']->taxonomy === 'topic' ) {
+			$term         = $current_crumb['term'];
+			$faq_page     = get_page_by_path( 'faq' );
+			$faq_crumb    = array(
+				'text'       => $faq_page->post_title,
+				'url'        => get_permalink( $faq_page ),
+				'allow_html' => true
+			);
+
+			$current_crumb = array_pop( $crumbs );
+			array_push( $crumbs, $faq_crumb, $current_crumb );
 		}
 	}
 	return $crumbs;
