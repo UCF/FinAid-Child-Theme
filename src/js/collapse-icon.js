@@ -11,14 +11,7 @@
 
       $object.click(() => {
         const $icon = $object.find('.fa');
-
-        if ($icon.hasClass(closed)) {
-          $icon.removeClass(closed);
-          $icon.addClass(opened);
-        } else if ($icon.hasClass(opened)) {
-          $icon.removeClass(opened);
-          $icon.addClass(closed);
-        }
+        $icon.toggleClass(`${closed} ${opened}`);
       });
     });
   };
