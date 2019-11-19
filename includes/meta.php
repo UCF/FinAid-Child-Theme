@@ -47,6 +47,31 @@ add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\enqueue_admin_assets', 11
 
 
 /**
+ * Enqueue TinyMCE editor styles
+ *
+ * @since 1.0.0
+ * @author Jo Dickson
+ */
+function enqueue_editor_assets() {
+	// If debug mode is enabled, force editor stylesheets to
+	// reload on every page refresh.  Caching of these stylesheets
+	// is very aggressive
+	$cache_bust = '';
+	if ( WP_DEBUG === true ) {
+		$cache_bust = date( 'YmdHis' );
+	}
+	else {
+		$theme = wp_get_theme();
+		$cache_bust = $theme->get( 'Version' );
+	}
+
+	add_editor_style( FINAID_THEME_CSS_URL . '/editor.min.css?v=' . $cache_bust );
+}
+
+add_action( 'init', __NAMESPACE__ . '\enqueue_editor_assets', 99 ); // Enqueue late to ensure styles are enqueued after Athena SC Plugin's styles
+
+
+/**
  * Returns an inline script that initializes Scrollspy on the given nav.
  *
  * @since 1.0.0
