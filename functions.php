@@ -1,7 +1,7 @@
 <?php
 namespace FinAid\Theme;
 
-define( 'FINAID_THEME_DIR', trailingslashit( get_template_directory() ) );
+define( 'FINAID_THEME_DIR', trailingslashit( get_stylesheet_directory() ) );
 
 
 // Theme foundation
