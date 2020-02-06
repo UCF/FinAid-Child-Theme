@@ -12,7 +12,7 @@ namespace FinAid\Theme\Includes\RightSidebar;
  * @author RJ Bruneel
  * @return string HTML markup for the right sidebar template
  */
-function get_right_sidebar_template_markup( $post ) {
+function get_right_sidebar_template_markup( $post, $parent_post ) {
     ob_start();
 ?>
     <article class="<?php echo $post->post_status; ?> container mt-4 mt-sm-5 mb-5 pb-sm-4">
@@ -24,7 +24,7 @@ function get_right_sidebar_template_markup( $post ) {
                 <hr class="hidden-xs hidden-sm hr-vertical center-block">
             </div>
             <div class="col-lg-3 mt-4 mt-sm-5 mt-lg-0">
-                <?php echo get_right_sidebar_markup( $post->ID ); ?>
+                <?php echo get_right_sidebar_markup( $post, $parent_post ); ?>
             </div>
         </div>
     </article>
@@ -40,9 +40,10 @@ function get_right_sidebar_template_markup( $post ) {
  * @author RJ Bruneel
  * @return string HTML markup for the right sidebar
  */
-function get_right_sidebar_markup( $id ) {
+function get_right_sidebar_markup( $post, $parent_post ) {
     ob_start();
 
+    $id = ( $parent_post ) ? $parent_post->ID : $post->ID;
     $right_sidebar_header = get_field( 'right_sidebar_header', $id );
     $right_sidebar_menu = get_field( 'right_sidebar_menu', $id );
 ?>
@@ -52,10 +53,14 @@ function get_right_sidebar_markup( $id ) {
         <?php endif; ?>
         <?php if( $right_sidebar_menu && count($right_sidebar_menu) > 0 ) : ?>
             <ul class="nav flex-column">
-                <?php foreach( $right_sidebar_menu as $menu_item ): ?>
+                <?php
+                    foreach( $right_sidebar_menu as $menu_item ):
+                        $menu_item = $menu_item['right_sidebar_menu_item'];
+                        $active = ( $post->ID === $menu_item->ID ) ? ' active' : '';
+                ?>
                     <li class="nav-item">
-                        <a href="<?php echo get_permalink( $menu_item['right_sidebar_menu_item']->ID ); ?>" class="nav-link">
-                            <?php echo $menu_item['right_sidebar_menu_item']->post_title; ?>
+                        <a href="<?php echo get_permalink( $menu_item->ID ); ?>" class="nav-link<?php echo $active; ?>">
+                            <?php echo $menu_item->post_title; ?>
                         </a>
                     </li>
                 <?php endforeach; ?>

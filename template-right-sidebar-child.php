@@ -13,7 +13,7 @@ the_post();
 $parent_post = get_post( $post->post_parent );
 
 if( $parent_post ) {
-    echo RightSidebar\get_right_sidebar_template_markup( $parent_post );
+    echo RightSidebar\get_right_sidebar_template_markup( $post, $parent_post );
 }
 
 get_footer();

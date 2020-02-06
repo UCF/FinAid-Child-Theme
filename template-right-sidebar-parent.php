@@ -10,7 +10,7 @@ use FinAid\Theme\Includes\RightSidebar as RightSidebar;
 get_header();
 the_post();
 
-echo RightSidebar\get_right_sidebar_template_markup( $post );
+echo RightSidebar\get_right_sidebar_template_markup( $post, null );
 
 get_footer();
 
