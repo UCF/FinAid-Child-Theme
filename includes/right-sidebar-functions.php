@@ -49,7 +49,9 @@ function get_right_sidebar_markup( $post, $parent_post ) {
 ?>
     <div class="sticky-top pt-lg-5">
         <?php if( $right_sidebar_header ) : ?>
-            <h2 class="h6 text-uppercase mt-2 mb-4"><?php echo $right_sidebar_header; ?></h2>
+            <h2 class="h6 text-uppercase mt-2 mb-4" id="right-sidebar-nav" aria-label="Page navigation">
+                <?php echo $right_sidebar_header; ?>
+            </h2>
         <?php endif; ?>
         <?php if( $right_sidebar_menu && count($right_sidebar_menu) > 0 ) : ?>
             <ul class="nav flex-column">
@@ -59,7 +61,8 @@ function get_right_sidebar_markup( $post, $parent_post ) {
                         $active = ( $post->ID === $menu_item->ID ) ? ' active' : '';
                 ?>
                     <li class="nav-item">
-                        <a href="<?php echo get_permalink( $menu_item->ID ); ?>" class="nav-link<?php echo $active; ?>">
+                        <a href="<?php echo get_permalink( $menu_item->ID ); ?>"
+                            class="nav-link<?php echo $active; ?>" aria-labelledby="right-sidebar-nav">
                             <?php echo $menu_item->post_title; ?>
                         </a>
                     </li>
