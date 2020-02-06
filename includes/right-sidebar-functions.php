@@ -49,7 +49,7 @@ function get_right_sidebar_markup( $post, $parent_post ) {
 ?>
     <div class="sticky-top pt-lg-5">
         <?php if( $right_sidebar_header ) : ?>
-            <h3 class="h6 text-uppercase mt-2 mb-4"><?php echo $right_sidebar_header; ?></h3>
+            <h2 class="h6 text-uppercase mt-2 mb-4"><?php echo $right_sidebar_header; ?></h2>
         <?php endif; ?>
         <?php if( $right_sidebar_menu && count($right_sidebar_menu) > 0 ) : ?>
             <ul class="nav flex-column">
