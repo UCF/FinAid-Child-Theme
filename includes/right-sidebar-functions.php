@@ -15,16 +15,16 @@ namespace FinAid\Theme\Includes\RightSidebar;
 function get_right_sidebar_template_markup( $post, $parent_post ) {
     ob_start();
 ?>
-    <article class="<?php echo $post->post_status; ?> container mt-4 mt-sm-5 mb-5 pb-sm-4">
+    <article class="<?php echo $post->post_status; ?> container mb-5 pb-sm-4">
         <div class="row">
-            <div class="col-lg-8">
-                <?php the_content() ?>
+            <div class="col-auto hidden-md-down mt-4 mt-sm-5 push-lg-8">
+                <hr class="hidden-xs hidden-sm hr-vertical">
             </div>
-            <div class="col-auto hidden-md-down">
-                <hr class="hidden-xs hidden-sm hr-vertical center-block">
-            </div>
-            <div class="col-lg-3 mt-4 mt-sm-5 mt-lg-0">
+            <div class="col-lg-3 mt-4 mt-sm-5 mt-lg-0 mb-4 mb-lg-0 push-lg-8 text-center text-md-left">
                 <?php echo get_right_sidebar_markup( $post, $parent_post ); ?>
+            </div>
+            <div class="col-lg-8 mt-4 mt-sm-5 pull-lg-4">
+                <?php the_content(); ?>
             </div>
         </div>
     </article>
@@ -47,7 +47,7 @@ function get_right_sidebar_markup( $post, $parent_post ) {
     $right_sidebar_header = get_field( 'right_sidebar_header', $id );
     $right_sidebar_menu = get_field( 'right_sidebar_menu', $id );
 ?>
-    <div class="sticky-top">
+    <div class="sticky-top pt-lg-5">
         <?php if( $right_sidebar_header ) : ?>
             <h3 class="h6 text-uppercase mt-2 mb-4"><?php echo $right_sidebar_header; ?></h3>
         <?php endif; ?>
