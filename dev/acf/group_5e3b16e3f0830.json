@@ -1,0 +1,89 @@
+{
+    "key": "group_5e3b16e3f0830",
+    "title": "Right Sidebar",
+    "fields": [
+        {
+            "key": "field_5e3b2f677cff4",
+            "label": "Header",
+            "name": "right_sidebar_header",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5e3b2fe47cff5",
+            "label": "Menu",
+            "name": "right_sidebar_menu",
+            "type": "repeater",
+            "instructions": "Menu items to display in the right sidebar on parent and child pages. Less than 10 menu items.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 9,
+            "layout": "table",
+            "button_label": "Add Menu Item",
+            "sub_fields": [
+                {
+                    "key": "field_5e3b30d97cff6",
+                    "label": "Menu Item",
+                    "name": "right_sidebar_menu_item",
+                    "type": "post_object",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "post_type": "",
+                    "taxonomy": "",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "return_format": "object",
+                    "ui": 1
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            },
+            {
+                "param": "post_template",
+                "operator": "==",
+                "value": "template-right-sidebar-parent.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1581004670
+}
