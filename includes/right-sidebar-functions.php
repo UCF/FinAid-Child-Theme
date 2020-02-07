@@ -5,6 +5,24 @@
 namespace FinAid\Theme\Includes\RightSidebar;
 
 
+
+/**
+ * Overides the subtitle in the header.
+ *
+ * @since 1.0.0
+ * @author RJ Bruneel
+ * @return string Filter to overide subtitle in the header.
+ */
+
+    function ucf_header_sidebar_subtitle( $subtitle, $obj  ) {
+        if( is_page_template( array( 'template-right-sidebar-child.php' ) ) ) {
+            $subtitle = get_the_title($obj->post_parent);
+        }
+        return $subtitle;
+    }
+
+    add_filter( 'ucfwp_get_header_subtitle_before', __NAMESPACE__ . '\ucf_header_sidebar_subtitle', 10, 2 );
+
 /**
  * Returns right sidebar template markup.
  *
