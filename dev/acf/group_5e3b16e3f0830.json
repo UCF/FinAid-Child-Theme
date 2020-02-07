@@ -26,7 +26,7 @@
             "label": "Menu",
             "name": "right_sidebar_menu",
             "type": "repeater",
-            "instructions": "Menu items to display in the right sidebar on parent and child pages. Less than 10 menu items.",
+            "instructions": "Menu items to display in the right sidebar on parent and child pages. Limited to 9 menu items.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
