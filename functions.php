@@ -10,6 +10,7 @@ include_once FINAID_THEME_DIR . 'includes/meta.php';
 include_once FINAID_THEME_DIR . 'includes/header-functions.php';
 include_once FINAID_THEME_DIR . 'includes/breadcrumb-functions.php';
 include_once FINAID_THEME_DIR . 'includes/chatbot-functions.php';
+include_once FINAID_THEME_DIR . 'includes/right-sidebar-functions.php';
 
 // Plugin extras/overrides
 
