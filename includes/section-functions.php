@@ -514,7 +514,7 @@ function display_section_before( $retval, $section, $class, $title, $section_id 
 			break;
 		case 'default':
 		default:
-			$retval = UCF_Section_Common::ucf_section_display_before( $section, $class, $title, $section_id );
+			$retval = \UCF_Section_Common::ucf_section_display_before( $section, $class, $title, $section_id );
 			break;
 	}
 
@@ -544,7 +544,7 @@ function display_section_content( $retval, $section ) {
 			break;
 		case 'default':
 		default:
-			$retval = UCF_Section_Common::ucf_section_display( $section );
+			$retval = \UCF_Section_Common::ucf_section_display( $section );
 			break;
 	}
 
@@ -575,7 +575,7 @@ function display_section_after( $retval, $section ) {
 			break;
 		case 'default':
 		default:
-			$retval = UCF_Section_Common::ucf_section_display_after( $section );
+			$retval = \UCF_Section_Common::ucf_section_display_after( $section );
 			break;
 	}
 
