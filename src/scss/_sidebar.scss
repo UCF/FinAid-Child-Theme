@@ -1,0 +1,14 @@
+.affixed-sidebar {
+  @include media-breakpoint-down(md) {
+    position: static;
+  }
+
+  @include media-breakpoint-up(lg) {
+    -ms-overflow-style: none; //sass-lint:disable-line no-vendor-prefixes
+    -webkit-overflow-scrolling: touch; //sass-lint:disable-line no-vendor-prefixes
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none;
+  }
+}

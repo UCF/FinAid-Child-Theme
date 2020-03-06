@@ -133,8 +133,18 @@ gulp.task('scss-build-theme', () => {
   return buildCSS(`${config.src.scssPath}/style.scss`);
 });
 
+// Compile admin stylesheet
+gulp.task('scss-build-admin', () => {
+  return buildCSS(`${config.src.scssPath}/admin.scss`);
+});
+
+// Compile global editor stylesheet
+gulp.task('scss-build-editor', () => {
+  return buildCSS(`${config.src.scssPath}/editor.scss`);
+});
+
 // All theme css-related tasks
-gulp.task('css', gulp.series('scss-lint-theme', 'scss-build-theme'));
+gulp.task('css', gulp.series('scss-lint-theme', 'scss-build-theme', 'scss-build-admin', 'scss-build-editor'));
 
 
 //
