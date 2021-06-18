@@ -1,0 +1,318 @@
+//
+// Theme variables and variable overrides
+//
+@import 'variables';
+
+
+//
+// Third-party assets
+//
+
+// Athena Framework
+@import './ucf-athena-framework/src/scss/framework';
+
+
+.npc-app {
+
+  //
+  // Form controls
+  //
+
+  // Radio buttons
+  .radio-option-wrapper {
+    @extend .form-check;
+
+    label {
+      @extend .form-check-label;
+    }
+
+    input {
+      @extend .form-check-input;
+    }
+  }
+
+  //
+  // General components
+  //
+
+  // Steps list/"Stepper"
+  .npc-stepper-wrapper {
+    margin-top: 1rem;
+  }
+
+  .npc-stepper-wrapper {
+    display: table;
+    width: 100%;
+    margin: 0 auto;
+    letter-spacing: normal;
+    padding: 20px 0px 20px 0px;
+    z-index: 9; }
+
+    .npc-stepper-wrapper .npc-step {
+      display: table-cell;
+      position: relative; }
+      .npc-stepper-wrapper .npc-step:first-child .npc-step-bar-left,
+      .npc-stepper-wrapper .npc-step:last-child .npc-step-bar-right {
+        display: none; }
+      .npc-stepper-wrapper .npc-step .npc-step-circle {
+        width: 20px;
+        height: 20px;
+        margin: 0 auto;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 20px;
+        font-size: 14px;
+        font-weight: 600; }
+        .theme-light .npc-stepper-wrapper .npc-step .npc-step-circle {
+          border: 2px solid #000;
+          color: #000; }
+        .theme-dark .npc-stepper-wrapper .npc-step .npc-step-circle {
+          border: 2px solid #f5f5f5;
+          color: #f5f5f5; }
+    .npc-stepper-wrapper .npc-step {
+      cursor: not-allowed; }
+      .npc-stepper-wrapper .npc-step.active, .npc-stepper-wrapper .npc-step.done {
+        cursor: pointer; }
+      .npc-stepper-wrapper .npc-step.active .npc-step-circle {
+        background: transparent; }
+        .theme-light .npc-stepper-wrapper .npc-step.active .npc-step-circle {
+          color: #17800A;
+          border: 2px solid #17800A; }
+        .theme-dark .npc-stepper-wrapper .npc-step.active .npc-step-circle {
+          color: #1EA20C;
+          border: 2px solid #1EA20C; }
+        .npc-stepper-wrapper .npc-step.active .npc-step-circle:before {
+          font-weight: 100;
+          content: "\270E"; }
+        .npc-stepper-wrapper .npc-step.active .npc-step-circle * {
+          display: none; }
+      .npc-stepper-wrapper .npc-step.done:not(.non-editable):hover {
+        opacity: 0.6; }
+        .theme-light .npc-stepper-wrapper .npc-step.done:not(.non-editable):hover .npc-step-circle {
+          color: #fff;
+          border: 2px solid #17800A;
+          background-color: #17800A; }
+        .theme-dark .npc-stepper-wrapper .npc-step.done:not(.non-editable):hover .npc-step-circle {
+          color: #fff;
+          border: 2px solid #1EA20C;
+          background-color: #1EA20C; }
+        .npc-stepper-wrapper .npc-step.done:not(.non-editable):hover .npc-step-circle:before {
+          font-weight: 100;
+          content: "\270E"; }
+        .npc-stepper-wrapper .npc-step.done:not(.non-editable):hover .npc-step-circle * {
+          display: none; }
+      .theme-light .npc-stepper-wrapper .npc-step.done:not(.non-editable) .npc-step-circle {
+        color: #fff;
+        border: 2px solid #17800A;
+        background-color: #17800A; }
+      .theme-dark .npc-stepper-wrapper .npc-step.done:not(.non-editable) .npc-step-circle {
+        color: #fff;
+        border: 2px solid #1EA20C;
+        background-color: #1EA20C; }
+      .npc-stepper-wrapper .npc-step.done:not(.non-editable) .npc-step-circle:before {
+        font-weight: 100;
+        content: "\2714"; }
+      .npc-stepper-wrapper .npc-step.done:not(.non-editable) .npc-step-circle * {
+        display: none; }
+      .npc-stepper-wrapper .npc-step.non-editable {
+        cursor: not-allowed; }
+        .theme-light .npc-stepper-wrapper .npc-step.non-editable .npc-step-circle {
+          color: #17800A;
+          border: 2px solid #17800A;
+          background-color: #bbb; }
+        .theme-dark .npc-stepper-wrapper .npc-step.non-editable .npc-step-circle {
+          color: #1EA20C;
+          border: 2px solid #1EA20C;
+          background-color: #525252; }
+        .npc-stepper-wrapper .npc-step.non-editable .npc-step-circle:before {
+          font-weight: 100;
+          content: "\2714"; }
+        .npc-stepper-wrapper .npc-step.non-editable .npc-step-circle * {
+          display: none; }
+      .npc-stepper-wrapper .npc-step.na {
+        cursor: not-allowed; }
+        .npc-stepper-wrapper .npc-step.na .npc-step-circle {
+          opacity: 0.7; }
+          .theme-light .npc-stepper-wrapper .npc-step.na .npc-step-circle {
+            color: #000 !important;
+            border: 2px solid #000 !important;
+            background-color: #bbb !important; }
+          .theme-dark .npc-stepper-wrapper .npc-step.na .npc-step-circle {
+            color: #f5f5f5 !important;
+            border: 2px solid #f5f5f5 !important;
+            background-color: #525252 !important; }
+          .npc-stepper-wrapper .npc-step.na .npc-step-circle:before {
+            font-weight: 100;
+            content: "\2718"; }
+          .npc-stepper-wrapper .npc-step.na .npc-step-circle * {
+            display: none; }
+      .npc-stepper-wrapper .npc-step .npc-step-title {
+        margin-top: 16px;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center; }
+        .theme-light .npc-stepper-wrapper .npc-step .npc-step-title {
+          color: #000; }
+        .theme-dark .npc-stepper-wrapper .npc-step .npc-step-title {
+          color: #f5f5f5; }
+      .npc-stepper-wrapper .npc-step.active .npc-step-title, .npc-stepper-wrapper .npc-step.done:not(.na) .npc-step-title {
+        font-weight: 600; }
+        .theme-light .npc-stepper-wrapper .npc-step.active .npc-step-title, .theme-light .npc-stepper-wrapper .npc-step.done:not(.na) .npc-step-title {
+          color: #17800A; }
+        .theme-dark .npc-stepper-wrapper .npc-step.active .npc-step-title, .theme-dark .npc-stepper-wrapper .npc-step.done:not(.na) .npc-step-title {
+          color: #1EA20C; }
+      .npc-stepper-wrapper .npc-step.done .npc-step-title {
+        font-weight: 600; }
+      .npc-stepper-wrapper .npc-step .npc-step-bar-left {
+        position: absolute;
+        top: 11px;
+        height: 1px;
+        border-top: 1px solid #dddddd; }
+      .npc-stepper-wrapper .npc-step .npc-step-bar-right {
+        position: absolute;
+        top: 11px;
+        height: 1px;
+        border-top: 1px solid #dddddd;
+        right: 0;
+        left: 50%;
+        margin-left: 20px; }
+      .npc-stepper-wrapper .npc-step .npc-step-bar-left {
+        left: 0;
+        right: 50%;
+        margin-right: 20px; }
+
+  @media screen and (max-width: 767px) {
+    .npc-stepper-wrapper .npc-step .npc-step-title {
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 400; } }
+
+  .npc-question-wrapper .question-wrapper fieldset .error-format {
+    color: #c44f38;
+  }
+
+  // Section descriptions
+  .npc-section-description {
+    @extend .lead;
+  }
+
+  // Prev/Next navigation
+  .npc-action-wrapper,
+  .action-wrapper,
+  .npc-nav-button-row {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  .nav-button {
+    margin: 0 1rem 1rem;
+  }
+
+  // Question/answer rows
+  .npc-question-wrapper .question-section,
+  .answer-row .section-title {
+    @extend .h4;
+    font-weight: normal;
+
+    @include media-breakpoint-up(md) {
+      text-align: right;
+    }
+  }
+
+  .question-text {
+    @extend .h5;
+  }
+
+  .answer-row .answer-question .answer {
+    font-weight: bold;
+  }
+
+
+    .npc-result-wrapper .answer-row.expense {
+      /* font-style: italic; */
+      font-size: 16px; }
+      .npc-result-wrapper .answer-row.expense .section-title {
+        border-right: 4px solid #cf110c;
+        padding: 10px 0px 10px 0px; }
+        .npc-result-wrapper .answer-row.expense .section-title.top-radius {
+          border-top-right-radius: 8px; }
+        .npc-result-wrapper .answer-row.expense .section-title.bottom-radius {
+          border-bottom-right-radius: 8px; }
+        .npc-result-wrapper .answer-row.expense .section-title .description {
+          font-size: 12px; }
+      .npc-result-wrapper .answer-row.expense .answer-question {
+        padding: 10px 0px 10px 0px; }
+      .npc-result-wrapper .answer-row.expense.exp-total {
+        margin-top: 0px;
+        font-style: normal;
+        /* font-weight: medium !important; */
+        font-size: 21px; }
+        .npc-result-wrapper .answer-row.expense.exp-total .section-title {
+          padding: 15px 0px 15px 0px; }
+        .npc-result-wrapper .answer-row.expense.exp-total .answer-question {
+          padding: 15px 0px 15px 0px; }
+    .npc-result-wrapper .answer-row.grant {
+      margin: 20px 0px 0px 0px; }
+      .npc-result-wrapper .answer-row.grant .section-title {
+        border-right: 4px solid #0c8fb6;
+        border-radius: 8px; }
+        .npc-result-wrapper .answer-row.grant .section-title .description {
+          font-size: 12px;
+          font-weight: normal;
+          font-style: italic; }
+    .npc-result-wrapper .answer-row.total {
+      margin: 20px 0px 20px 0px;
+      font-size: 22px;
+      font-weight: bold;
+      display: table; }
+      .npc-result-wrapper .answer-row.total .section-title {
+        border-right: 4px solid #1ea20c;
+        border-radius: 8px;
+        display: table-cell;
+        vertical-align: middle; }
+      .npc-result-wrapper .answer-row.total .answer-question div {
+        display: table-cell;
+        vertical-align: middle; }
+        .npc-result-wrapper .answer-row.total .answer-question div.answer {
+          font-size: 40px; }
+
+  .npc-result-wrapper .specific-explanations {
+    padding: 0px 20px 0px 20px; }
+    .npc-result-wrapper .specific-explanations .explanation {
+      font-size: 14px;
+      margin: 5px 0px 5px 0px; }
+      .npc-result-wrapper .specific-explanations .explanation.alert {
+        font-weight: bold;
+        color: #cf110c; }
+
+  .npc-result-wrapper .general-explanations {
+    margin-top: 40px;
+    /* font-size: 14px; */
+    padding: 0px 20px 0px 20px;
+  }
+
+
+  //
+  // Step-specific overrides
+  //
+
+  // Home/intro view
+  .agreement-text-wrapper {
+    @extend .card;
+    margin: 0 auto 2rem;
+    max-width: 50rem;
+    padding: 1.5rem;
+  }
+
+
+  //
+  // Print overrides TODO
+  //
+
+  @media print {
+    .home-wrapper .npc-stepper-wrapper, .home-wrapper .npc-action-wrapper {
+      display: none; }
+    .header-wrapper {
+      padding: 0px !important; } }
+
+}
