@@ -8,7 +8,7 @@ const eslint       = require('gulp-eslint');
 const isFixed      = require('gulp-eslint-if-fixed');
 const babel        = require('gulp-babel');
 const rename       = require('gulp-rename');
-const sass         = require('gulp-sass');
+const sass         = require('gulp-dart-sass');
 const sassLint     = require('gulp-sass-lint');
 const uglify       = require('gulp-uglify');
 const merge        = require('merge');
@@ -24,6 +24,7 @@ let config = {
     jsPath: './static/js',
     fontPath: './static/fonts'
   },
+  devPath: './dev',
   packagesPath: './node_modules',
   sync: false,
   syncTarget: 'http://localhost/wordpress/'
