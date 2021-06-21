@@ -12,18 +12,37 @@
 @import './ucf-athena-framework/src/scss/framework';
 
 
+//
+// The net price calculator's outermost wrapper element.
+// Selectors not contained within this element will be
+// removed from the minified stylesheet.
+//
 .npc-app {
 
   //
   // Form controls
   //
 
+  // Text-based inputs
+  .input-number-wrapper {
+    max-width: 10rem;
+
+    input {
+      @extend .form-control;
+    }
+  }
+
   // Radio buttons
+  .input-radio-wrapper {
+    padding-left: 1.5rem;
+  }
+
   .radio-option-wrapper {
     @extend .form-check;
 
     label {
       @extend .form-check-label;
+      padding-left: 0;
     }
 
     input {
@@ -31,176 +50,188 @@
     }
   }
 
+  // Select dropdowns
+  .input-dropdown-wrapper select {
+    @extend .custom-select;
+  }
+
+  // Error messages
+  .error-format {
+    color: $brand-danger-aw;
+    margin-bottom: .5rem;
+  }
+
+
   //
   // General components
   //
 
   // Steps list/"Stepper"
   .npc-stepper-wrapper {
-    margin-top: 1rem;
-  }
-
-  .npc-stepper-wrapper {
-    display: table;
-    width: 100%;
+    display: flex;
     margin: 0 auto;
-    letter-spacing: normal;
-    padding: 20px 0px 20px 0px;
-    z-index: 9; }
+    padding: 1rem 0;
+    width: 100%;
 
-    .npc-stepper-wrapper .npc-step {
-      display: table-cell;
-      position: relative; }
-      .npc-stepper-wrapper .npc-step:first-child .npc-step-bar-left,
-      .npc-stepper-wrapper .npc-step:last-child .npc-step-bar-right {
-        display: none; }
-      .npc-stepper-wrapper .npc-step .npc-step-circle {
-        width: 20px;
-        height: 20px;
-        margin: 0 auto;
-        border-radius: 50%;
-        text-align: center;
-        line-height: 20px;
-        font-size: 14px;
-        font-weight: 600; }
-        .theme-light .npc-stepper-wrapper .npc-step .npc-step-circle {
-          border: 2px solid #000;
-          color: #000; }
-        .theme-dark .npc-stepper-wrapper .npc-step .npc-step-circle {
-          border: 2px solid #f5f5f5;
-          color: #f5f5f5; }
-    .npc-stepper-wrapper .npc-step {
-      cursor: not-allowed; }
-      .npc-stepper-wrapper .npc-step.active, .npc-stepper-wrapper .npc-step.done {
-        cursor: pointer; }
-      .npc-stepper-wrapper .npc-step.active .npc-step-circle {
-        background: transparent; }
-        .theme-light .npc-stepper-wrapper .npc-step.active .npc-step-circle {
-          color: #17800A;
-          border: 2px solid #17800A; }
-        .theme-dark .npc-stepper-wrapper .npc-step.active .npc-step-circle {
-          color: #1EA20C;
-          border: 2px solid #1EA20C; }
-        .npc-stepper-wrapper .npc-step.active .npc-step-circle:before {
-          font-weight: 100;
-          content: "\270E"; }
-        .npc-stepper-wrapper .npc-step.active .npc-step-circle * {
-          display: none; }
-      .npc-stepper-wrapper .npc-step.done:not(.non-editable):hover {
-        opacity: 0.6; }
-        .theme-light .npc-stepper-wrapper .npc-step.done:not(.non-editable):hover .npc-step-circle {
-          color: #fff;
-          border: 2px solid #17800A;
-          background-color: #17800A; }
-        .theme-dark .npc-stepper-wrapper .npc-step.done:not(.non-editable):hover .npc-step-circle {
-          color: #fff;
-          border: 2px solid #1EA20C;
-          background-color: #1EA20C; }
-        .npc-stepper-wrapper .npc-step.done:not(.non-editable):hover .npc-step-circle:before {
-          font-weight: 100;
-          content: "\270E"; }
-        .npc-stepper-wrapper .npc-step.done:not(.non-editable):hover .npc-step-circle * {
-          display: none; }
-      .theme-light .npc-stepper-wrapper .npc-step.done:not(.non-editable) .npc-step-circle {
-        color: #fff;
-        border: 2px solid #17800A;
-        background-color: #17800A; }
-      .theme-dark .npc-stepper-wrapper .npc-step.done:not(.non-editable) .npc-step-circle {
-        color: #fff;
-        border: 2px solid #1EA20C;
-        background-color: #1EA20C; }
-      .npc-stepper-wrapper .npc-step.done:not(.non-editable) .npc-step-circle:before {
-        font-weight: 100;
-        content: "\2714"; }
-      .npc-stepper-wrapper .npc-step.done:not(.non-editable) .npc-step-circle * {
-        display: none; }
-      .npc-stepper-wrapper .npc-step.non-editable {
-        cursor: not-allowed; }
-        .theme-light .npc-stepper-wrapper .npc-step.non-editable .npc-step-circle {
-          color: #17800A;
-          border: 2px solid #17800A;
-          background-color: #bbb; }
-        .theme-dark .npc-stepper-wrapper .npc-step.non-editable .npc-step-circle {
-          color: #1EA20C;
-          border: 2px solid #1EA20C;
-          background-color: #525252; }
-        .npc-stepper-wrapper .npc-step.non-editable .npc-step-circle:before {
-          font-weight: 100;
-          content: "\2714"; }
-        .npc-stepper-wrapper .npc-step.non-editable .npc-step-circle * {
-          display: none; }
-      .npc-stepper-wrapper .npc-step.na {
-        cursor: not-allowed; }
-        .npc-stepper-wrapper .npc-step.na .npc-step-circle {
-          opacity: 0.7; }
-          .theme-light .npc-stepper-wrapper .npc-step.na .npc-step-circle {
-            color: #000 !important;
-            border: 2px solid #000 !important;
-            background-color: #bbb !important; }
-          .theme-dark .npc-stepper-wrapper .npc-step.na .npc-step-circle {
-            color: #f5f5f5 !important;
-            border: 2px solid #f5f5f5 !important;
-            background-color: #525252 !important; }
-          .npc-stepper-wrapper .npc-step.na .npc-step-circle:before {
-            font-weight: 100;
-            content: "\2718"; }
-          .npc-stepper-wrapper .npc-step.na .npc-step-circle * {
-            display: none; }
-      .npc-stepper-wrapper .npc-step .npc-step-title {
-        margin-top: 16px;
-        font-size: 16px;
-        font-weight: 600;
-        text-align: center; }
-        .theme-light .npc-stepper-wrapper .npc-step .npc-step-title {
-          color: #000; }
-        .theme-dark .npc-stepper-wrapper .npc-step .npc-step-title {
-          color: #f5f5f5; }
-      .npc-stepper-wrapper .npc-step.active .npc-step-title, .npc-stepper-wrapper .npc-step.done:not(.na) .npc-step-title {
-        font-weight: 600; }
-        .theme-light .npc-stepper-wrapper .npc-step.active .npc-step-title, .theme-light .npc-stepper-wrapper .npc-step.done:not(.na) .npc-step-title {
-          color: #17800A; }
-        .theme-dark .npc-stepper-wrapper .npc-step.active .npc-step-title, .theme-dark .npc-stepper-wrapper .npc-step.done:not(.na) .npc-step-title {
-          color: #1EA20C; }
-      .npc-stepper-wrapper .npc-step.done .npc-step-title {
-        font-weight: 600; }
-      .npc-stepper-wrapper .npc-step .npc-step-bar-left {
-        position: absolute;
-        top: 11px;
-        height: 1px;
-        border-top: 1px solid #dddddd; }
-      .npc-stepper-wrapper .npc-step .npc-step-bar-right {
-        position: absolute;
-        top: 11px;
-        height: 1px;
-        border-top: 1px solid #dddddd;
-        right: 0;
-        left: 50%;
-        margin-left: 20px; }
-      .npc-stepper-wrapper .npc-step .npc-step-bar-left {
-        left: 0;
-        right: 50%;
-        margin-right: 20px; }
+    .npc-step {
+      cursor: not-allowed;
+      flex: 1 1 auto;
+      position: relative;
 
-  @media screen and (max-width: 767px) {
-    .npc-stepper-wrapper .npc-step .npc-step-title {
-      margin-top: 10px;
-      font-size: 13px;
-      font-weight: 400; } }
+      &:first-child .npc-step-bar-left,
+      &:last-child .npc-step-bar-right {
+        display: none;
+      }
 
-  .npc-question-wrapper .question-wrapper fieldset .error-format {
-    color: #c44f38;
+      &.active,
+      &.done {
+        cursor: pointer;
+      }
+
+      &.active {
+        .npc-step-circle {
+          border-color: $brand-success-aw;
+          color: $brand-success-aw;
+
+          &::before {
+            content: '\f040'; // pencil
+          }
+
+          * {
+            display: none;
+          }
+        }
+
+        .npc-step-title {
+          color: $brand-success-aw;
+        }
+      }
+
+      &.done:not(.non-editable) {
+        &:hover {
+          .npc-step-circle {
+            background-color: darken($brand-success-aw, 15%);
+            border-color: darken($brand-success-aw, 15%);
+            transition: background-color .2s ease-in-out, border-color .2s ease-in-out;
+
+            &::before {
+              content: '\f040'; // pencil
+            }
+          }
+
+          .npc-step-title {
+            color: darken($brand-success-aw, 15%);
+            transition: color .2s ease-in-out;
+          }
+        }
+
+        .npc-step-circle {
+          background-color: $brand-success-aw;
+          border-color: $brand-success-aw;
+          color: $white;
+
+          &::before {
+            content: '\f00c'; // check
+          }
+
+          * {
+            display: none;
+          }
+        }
+
+        .npc-step-title {
+          color: $brand-success-aw;
+        }
+      }
+
+      &.non-editable,
+      &.na {
+        opacity: .6;
+
+        .npc-step-circle {
+          background-color: $gray-light;
+          border-color: $brand-success-aw;
+
+          &:before {
+            content: '\f00c'; // check
+          }
+
+          * {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .npc-step-circle {
+      border: 2px solid $brand-primary;
+      border-radius: 50%;
+      font-size: $font-size-sm;
+      font-weight: bold;
+      height: 1.4rem;
+      line-height: 1.4;
+      margin: 0 auto;
+      text-align: center;
+      width: 1.4rem;
+
+      &::before {
+        // sass-lint:disable-block no-vendor-prefixes
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        font-family: FontAwesome;
+        font-weight: normal;
+        text-rendering: auto;
+      }
+    }
+
+    .npc-step-title {
+      font-weight: bold;
+      margin-top: 1rem;
+      text-align: center;
+
+      @include media-breakpoint-down(sm) {
+        font-size: $font-size-xs;
+      }
+    }
+
+    .npc-step-bar-left,
+    .npc-step-bar-right {
+      border-top: 1px solid $hr-border-color;
+      height: 1px;
+      position: absolute;
+      top: .5rem;
+    }
+
+    .npc-step-bar-left {
+      left: 0;
+      right: calc(50% + 1.4rem);
+
+      @include media-breakpoint-up(md) {
+        margin-right: 1rem;
+      }
+    }
+
+    .npc-step-bar-right {
+      left: calc(50% + 1.4rem);
+      right: 0;
+
+      @include media-breakpoint-up(md) {
+        margin-left: 1rem;
+      }
+    }
   }
 
   // Section descriptions
   .npc-section-description {
-    @extend .lead;
+    margin: 1.5rem auto 2.5rem;
+    max-width: 50rem;
   }
 
   // Prev/Next navigation
   .npc-action-wrapper,
   .action-wrapper,
   .npc-nav-button-row {
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     text-align: center;
   }
 
@@ -209,10 +240,24 @@
   }
 
   // Question/answer rows
+  .npc-question-stepper-question {
+    margin-bottom: 2rem;
+  }
+
+  .answer-row {
+    margin-bottom: 2rem;
+
+    @include media-breakpoint-up(md) {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  // Question/answer text
   .npc-question-wrapper .question-section,
   .answer-row .section-title {
-    @extend .h4;
+    @extend .h5;
     font-weight: normal;
+    margin-bottom: 1rem;
 
     @include media-breakpoint-up(md) {
       text-align: right;
@@ -220,75 +265,19 @@
   }
 
   .question-text {
-    @extend .h5;
+    @extend .font-size-base;
+    margin-bottom: 1rem;
+  }
+
+  .question-help {
+    @extend .font-size-sm;
+    @extend .text-muted;
+    margin-bottom: 1rem;
+    margin-top: -.5rem;
   }
 
   .answer-row .answer-question .answer {
     font-weight: bold;
-  }
-
-
-    .npc-result-wrapper .answer-row.expense {
-      /* font-style: italic; */
-      font-size: 16px; }
-      .npc-result-wrapper .answer-row.expense .section-title {
-        border-right: 4px solid #cf110c;
-        padding: 10px 0px 10px 0px; }
-        .npc-result-wrapper .answer-row.expense .section-title.top-radius {
-          border-top-right-radius: 8px; }
-        .npc-result-wrapper .answer-row.expense .section-title.bottom-radius {
-          border-bottom-right-radius: 8px; }
-        .npc-result-wrapper .answer-row.expense .section-title .description {
-          font-size: 12px; }
-      .npc-result-wrapper .answer-row.expense .answer-question {
-        padding: 10px 0px 10px 0px; }
-      .npc-result-wrapper .answer-row.expense.exp-total {
-        margin-top: 0px;
-        font-style: normal;
-        /* font-weight: medium !important; */
-        font-size: 21px; }
-        .npc-result-wrapper .answer-row.expense.exp-total .section-title {
-          padding: 15px 0px 15px 0px; }
-        .npc-result-wrapper .answer-row.expense.exp-total .answer-question {
-          padding: 15px 0px 15px 0px; }
-    .npc-result-wrapper .answer-row.grant {
-      margin: 20px 0px 0px 0px; }
-      .npc-result-wrapper .answer-row.grant .section-title {
-        border-right: 4px solid #0c8fb6;
-        border-radius: 8px; }
-        .npc-result-wrapper .answer-row.grant .section-title .description {
-          font-size: 12px;
-          font-weight: normal;
-          font-style: italic; }
-    .npc-result-wrapper .answer-row.total {
-      margin: 20px 0px 20px 0px;
-      font-size: 22px;
-      font-weight: bold;
-      display: table; }
-      .npc-result-wrapper .answer-row.total .section-title {
-        border-right: 4px solid #1ea20c;
-        border-radius: 8px;
-        display: table-cell;
-        vertical-align: middle; }
-      .npc-result-wrapper .answer-row.total .answer-question div {
-        display: table-cell;
-        vertical-align: middle; }
-        .npc-result-wrapper .answer-row.total .answer-question div.answer {
-          font-size: 40px; }
-
-  .npc-result-wrapper .specific-explanations {
-    padding: 0px 20px 0px 20px; }
-    .npc-result-wrapper .specific-explanations .explanation {
-      font-size: 14px;
-      margin: 5px 0px 5px 0px; }
-      .npc-result-wrapper .specific-explanations .explanation.alert {
-        font-weight: bold;
-        color: #cf110c; }
-
-  .npc-result-wrapper .general-explanations {
-    margin-top: 40px;
-    /* font-size: 14px; */
-    padding: 0px 20px 0px 20px;
   }
 
 
@@ -304,15 +293,150 @@
     padding: 1.5rem;
   }
 
+  // Results view
+  .npc-result-wrapper {
+    // Answer rows/columns
+    .answer-row,
+    .answer-row .section-title {
+      margin-bottom: 0;
+    }
+
+    .answer-row {
+      font-size: $font-size-xs;
+      font-weight: normal;
+      line-height: 1.4;
+
+      @include media-breakpoint-up(md) {
+        font-size: $font-size-base;
+        line-height: 1.4;
+      }
+
+      .section-title,
+      .answer-question {
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+      }
+
+      .answer-question {
+        align-self: center;
+
+        .answer {
+          font-weight: inherit;
+        }
+      }
+
+      &.expense.exp-total,
+      &.grant,
+      &.total {
+        @extend .lead;
+        line-height: 1.3;
+      }
+
+      &.expense {
+        .section-title {
+          border-color: $brand-danger;
+        }
+      }
+
+      &.grant {
+        margin-top: 1.5rem;
+
+        .section-title {
+          border-bottom-right-radius: .5rem;
+          border-color: $brand-info;
+          border-top-right-radius: .5rem;
+        }
+      }
+
+      &.total {
+        font-weight: bold;
+        margin-top: 1.5rem;
+
+        .section-title {
+          border-bottom-right-radius: .5rem;
+          border-color: $brand-success;
+          border-top-right-radius: .5rem;
+        }
+
+        .answer-question {
+          @include media-breakpoint-up(sm) {
+            font-size: 1.6rem;
+          }
+
+          @include media-breakpoint-up(md) {
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+
+    // Grouped result sections
+    .section-title,
+    .answer-question {
+      padding-bottom: .75rem;
+      padding-top: .75rem;
+    }
+
+    .section-title {
+      border-right: $border-width-thicker solid;
+      text-align: right;
+
+      h2 {
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+        margin: 0;
+      }
+
+      .description {
+        @extend .text-muted;
+        display: block;
+        font-size: .7rem;
+        line-height: 1.2;
+        margin-top: .5rem;
+
+        @include media-breakpoint-up(md) {
+          font-size: $font-size-xs;
+        }
+      }
+    }
+
+    .top-radius {
+      border-top-right-radius: .5rem;
+    }
+
+    .bottom-radius {
+      border-bottom-right-radius: .5rem;
+    }
+
+    // Footnotes
+    .specific-explanations {
+      margin: 2rem auto;
+      max-width: 50rem;
+    }
+
+    .general-explanations {
+      @extend .card;
+      margin: 2rem auto;
+      max-width: 50rem;
+      padding: 1.5rem;
+    }
+  }
+
 
   //
-  // Print overrides TODO
+  // Print overrides
   //
 
   @media print {
-    .home-wrapper .npc-stepper-wrapper, .home-wrapper .npc-action-wrapper {
-      display: none; }
-    .header-wrapper {
-      padding: 0px !important; } }
+    .npc-stepper-wrapper,
+    .npc-action-wrapper {
+      display: none;
+    }
 
+    .npc-section-description {
+      margin-top: 0;
+    }
+  }
 }
