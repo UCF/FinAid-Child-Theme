@@ -124,12 +124,13 @@ function serverServe(done) {
 }
 
 // Removes Athena-specific styles.  Leaves only selectors and media queries
-// with selectors that begin with '.npc-app'.
+// with selectors that begin with the provided selector string in
+// `allowedSelector`.
 //
 // NOTE: This function will strip out any at-rules besides @media--if custom
-// @import, @keyframe, etc rules ever need to be added to athena-gf.min.css,
-// this function will need to be updated!
-function filterAthenaCSS(file) {
+// @import, @keyframe, etc rules ever need to be added to a minified css file
+// created with this function, the function will need to be updated!
+function filterAthenaCSS(file, allowedSelector) {
   const cssObj = css.parse(file.contents.toString());
 
   if (cssObj) {
@@ -145,7 +146,7 @@ function filterAthenaCSS(file) {
         // Check each selector in the rule for selectors we want to keep.
         // If a selector in the rule's selector list matches, add it to
         // filteredSelectors.
-        filteredSelectors = getFilteredSelectors(rule, filteredSelectors);
+        filteredSelectors = getFilteredSelectors(rule, filteredSelectors, allowedSelector);
 
         // Check the rule's filteredSelectors array; if it's not empty, add
         // the rule to filteredRules.
@@ -164,7 +165,7 @@ function filterAthenaCSS(file) {
             // Check each selector in the rule for selectors we want to keep.
             // If a selector in the rule's selector list matches, add it to
             // filteredSubnodeSelectors.
-            filteredSubnodeSelectors = getFilteredSelectors(subnode, filteredSubnodeSelectors);
+            filteredSubnodeSelectors = getFilteredSelectors(subnode, filteredSubnodeSelectors, allowedSelector);
 
             // Check the rule's filteredSubnodeSelectors array; if it's not empty, add
             // the rule to filteredSubnodes.
@@ -193,10 +194,10 @@ function filterAthenaCSS(file) {
 }
 
 // Returns an array of filtered selectors present in a given node.
-function getFilteredSelectors(node, filteredSelectors) {
+function getFilteredSelectors(node, filteredSelectors, allowedSelector) {
   for (let i = 0; i < node.selectors.length; i++) {
     const selector = node.selectors[i];
-    if (selector.startsWith('.npc-app')) {
+    if (selector.startsWith(allowedSelector)) {
       filteredSelectors.push(selector);
     }
   }
@@ -230,7 +231,7 @@ gulp.task('scss-build-npc', () => {
     })
       .on('error', sass.logError))
     .pipe(tap((file) => {
-      return filterAthenaCSS(file);
+      return filterAthenaCSS(file, '.npc-app');
     }))
     .pipe(cleanCSS())
     .pipe(autoprefixer({
