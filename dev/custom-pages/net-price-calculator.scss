@@ -1,0 +1,442 @@
+//
+// Theme variables and variable overrides
+//
+@import 'variables';
+
+
+//
+// Third-party assets
+//
+
+// Athena Framework
+@import './ucf-athena-framework/src/scss/framework';
+
+
+//
+// The net price calculator's outermost wrapper element.
+// Selectors not contained within this element will be
+// removed from the minified stylesheet.
+//
+.npc-app {
+
+  //
+  // Form controls
+  //
+
+  // Text-based inputs
+  .input-number-wrapper {
+    max-width: 10rem;
+
+    input {
+      @extend .form-control;
+    }
+  }
+
+  // Radio buttons
+  .input-radio-wrapper {
+    padding-left: 1.5rem;
+  }
+
+  .radio-option-wrapper {
+    @extend .form-check;
+
+    label {
+      @extend .form-check-label;
+      padding-left: 0;
+    }
+
+    input {
+      @extend .form-check-input;
+    }
+  }
+
+  // Select dropdowns
+  .input-dropdown-wrapper select {
+    @extend .custom-select;
+  }
+
+  // Error messages
+  .error-format {
+    color: $brand-danger-aw;
+    margin-bottom: .5rem;
+  }
+
+
+  //
+  // General components
+  //
+
+  // Steps list/"Stepper"
+  .npc-stepper-wrapper {
+    display: flex;
+    margin: 0 auto;
+    padding: 1rem 0;
+    width: 100%;
+
+    .npc-step {
+      cursor: not-allowed;
+      flex: 1 1 auto;
+      position: relative;
+
+      &:first-child .npc-step-bar-left,
+      &:last-child .npc-step-bar-right {
+        display: none;
+      }
+
+      &.active,
+      &.done {
+        cursor: pointer;
+      }
+
+      &.active {
+        .npc-step-circle {
+          border-color: $brand-success-aw;
+          color: $brand-success-aw;
+
+          &::before {
+            content: '\f040'; // pencil
+          }
+
+          * {
+            display: none;
+          }
+        }
+
+        .npc-step-title {
+          color: $brand-success-aw;
+        }
+      }
+
+      &.done:not(.non-editable) {
+        &:hover {
+          .npc-step-circle {
+            background-color: darken($brand-success-aw, 15%);
+            border-color: darken($brand-success-aw, 15%);
+            transition: background-color .2s ease-in-out, border-color .2s ease-in-out;
+
+            &::before {
+              content: '\f040'; // pencil
+            }
+          }
+
+          .npc-step-title {
+            color: darken($brand-success-aw, 15%);
+            transition: color .2s ease-in-out;
+          }
+        }
+
+        .npc-step-circle {
+          background-color: $brand-success-aw;
+          border-color: $brand-success-aw;
+          color: $white;
+
+          &::before {
+            content: '\f00c'; // check
+          }
+
+          * {
+            display: none;
+          }
+        }
+
+        .npc-step-title {
+          color: $brand-success-aw;
+        }
+      }
+
+      &.non-editable,
+      &.na {
+        opacity: .6;
+
+        .npc-step-circle {
+          background-color: $gray-light;
+          border-color: $brand-success-aw;
+
+          &:before {
+            content: '\f00c'; // check
+          }
+
+          * {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .npc-step-circle {
+      border: 2px solid $brand-primary;
+      border-radius: 50%;
+      font-size: $font-size-sm;
+      font-weight: bold;
+      height: 1.4rem;
+      line-height: 1.4;
+      margin: 0 auto;
+      text-align: center;
+      width: 1.4rem;
+
+      &::before {
+        // sass-lint:disable-block no-vendor-prefixes
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        font-family: FontAwesome;
+        font-weight: normal;
+        text-rendering: auto;
+      }
+    }
+
+    .npc-step-title {
+      font-weight: bold;
+      margin-top: 1rem;
+      text-align: center;
+
+      @include media-breakpoint-down(sm) {
+        font-size: $font-size-xs;
+      }
+    }
+
+    .npc-step-bar-left,
+    .npc-step-bar-right {
+      border-top: 1px solid $hr-border-color;
+      height: 1px;
+      position: absolute;
+      top: .5rem;
+    }
+
+    .npc-step-bar-left {
+      left: 0;
+      right: calc(50% + 1.4rem);
+
+      @include media-breakpoint-up(md) {
+        margin-right: 1rem;
+      }
+    }
+
+    .npc-step-bar-right {
+      left: calc(50% + 1.4rem);
+      right: 0;
+
+      @include media-breakpoint-up(md) {
+        margin-left: 1rem;
+      }
+    }
+  }
+
+  // Section descriptions
+  .npc-section-description {
+    margin: 1.5rem auto 2.5rem;
+    max-width: 50rem;
+  }
+
+  // Prev/Next navigation
+  .npc-action-wrapper,
+  .action-wrapper,
+  .npc-nav-button-row {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .nav-button {
+    margin: 0 1rem 1rem;
+  }
+
+  // Question/answer rows
+  .npc-question-stepper-question {
+    margin-bottom: 2rem;
+  }
+
+  .answer-row {
+    margin-bottom: 2rem;
+
+    @include media-breakpoint-up(md) {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  // Question/answer text
+  .npc-question-wrapper .question-section,
+  .answer-row .section-title {
+    @extend .h5;
+    font-weight: normal;
+    margin-bottom: 1rem;
+
+    @include media-breakpoint-up(md) {
+      text-align: right;
+    }
+  }
+
+  .question-text {
+    @extend .font-size-base;
+    margin-bottom: 1rem;
+  }
+
+  .question-help {
+    @extend .font-size-sm;
+    @extend .text-muted;
+    margin-bottom: 1rem;
+    margin-top: -.5rem;
+  }
+
+  .answer-row .answer-question .answer {
+    font-weight: bold;
+  }
+
+
+  //
+  // Step-specific overrides
+  //
+
+  // Home/intro view
+  .agreement-text-wrapper {
+    @extend .card;
+    margin: 0 auto 2rem;
+    max-width: 50rem;
+    padding: 1.5rem;
+  }
+
+  // Results view
+  .npc-result-wrapper {
+    // Answer rows/columns
+    .answer-row,
+    .answer-row .section-title {
+      margin-bottom: 0;
+    }
+
+    .answer-row {
+      font-size: $font-size-xs;
+      font-weight: normal;
+      line-height: 1.4;
+
+      @include media-breakpoint-up(md) {
+        font-size: $font-size-base;
+        line-height: 1.4;
+      }
+
+      .section-title,
+      .answer-question {
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+      }
+
+      .answer-question {
+        align-self: center;
+
+        .answer {
+          font-weight: inherit;
+        }
+      }
+
+      &.expense.exp-total,
+      &.grant,
+      &.total {
+        @extend .lead;
+        line-height: 1.3;
+      }
+
+      &.expense {
+        .section-title {
+          border-color: $brand-danger;
+        }
+      }
+
+      &.grant {
+        margin-top: 1.5rem;
+
+        .section-title {
+          border-bottom-right-radius: .5rem;
+          border-color: $brand-info;
+          border-top-right-radius: .5rem;
+        }
+      }
+
+      &.total {
+        font-weight: bold;
+        margin-top: 1.5rem;
+
+        .section-title {
+          border-bottom-right-radius: .5rem;
+          border-color: $brand-success;
+          border-top-right-radius: .5rem;
+        }
+
+        .answer-question {
+          @include media-breakpoint-up(sm) {
+            font-size: 1.6rem;
+          }
+
+          @include media-breakpoint-up(md) {
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+
+    // Grouped result sections
+    .section-title,
+    .answer-question {
+      padding-bottom: .75rem;
+      padding-top: .75rem;
+    }
+
+    .section-title {
+      border-right: $border-width-thicker solid;
+      text-align: right;
+
+      h2 {
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+        margin: 0;
+      }
+
+      .description {
+        @extend .text-muted;
+        display: block;
+        font-size: .7rem;
+        line-height: 1.2;
+        margin-top: .5rem;
+
+        @include media-breakpoint-up(md) {
+          font-size: $font-size-xs;
+        }
+      }
+    }
+
+    .top-radius {
+      border-top-right-radius: .5rem;
+    }
+
+    .bottom-radius {
+      border-bottom-right-radius: .5rem;
+    }
+
+    // Footnotes
+    .specific-explanations {
+      margin: 2rem auto;
+      max-width: 50rem;
+    }
+
+    .general-explanations {
+      @extend .card;
+      margin: 2rem auto;
+      max-width: 50rem;
+      padding: 1.5rem;
+    }
+  }
+
+
+  //
+  // Print overrides
+  //
+
+  @media print {
+    .npc-stepper-wrapper,
+    .npc-action-wrapper {
+      display: none;
+    }
+
+    .npc-section-description {
+      margin-top: 0;
+    }
+  }
+}
