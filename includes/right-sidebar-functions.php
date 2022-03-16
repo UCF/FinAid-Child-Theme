@@ -72,20 +72,22 @@ function get_right_sidebar_markup( $post, $parent_post ) {
             </h2>
         <?php endif; ?>
         <?php if( $right_sidebar_menu && count($right_sidebar_menu) > 0 ) : ?>
-            <ul class="nav flex-column">
-                <?php
-                    foreach( $right_sidebar_menu as $menu_item ):
-                        $menu_item = $menu_item['right_sidebar_menu_item'];
-                        $active = ( $post->ID === $menu_item->ID ) ? ' active' : '';
-                ?>
-                    <li class="nav-item">
-                        <a href="<?php echo get_permalink( $menu_item->ID ); ?>"
-                            class="nav-link<?php echo $active; ?>" aria-labelledby="right-sidebar-nav">
-                            <?php echo $menu_item->post_title; ?>
-                        </a>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
+			<nav aria-labelledby="right-sidebar-nav">
+				<ul class="nav flex-column">
+					<?php
+						foreach( $right_sidebar_menu as $menu_item ):
+							$menu_item = $menu_item['right_sidebar_menu_item'];
+							$active = ( $post->ID === $menu_item->ID ) ? ' active' : '';
+					?>
+						<li class="nav-item">
+							<a href="<?php echo get_permalink( $menu_item->ID ); ?>"
+								class="nav-link<?php echo $active; ?>">
+								<?php echo $menu_item->post_title; ?>
+							</a>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			</nav>
         <?php endif; ?>
     </div>
 <?php
