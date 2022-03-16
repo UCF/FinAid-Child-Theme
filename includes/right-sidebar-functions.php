@@ -35,8 +35,8 @@ function get_right_sidebar_template_markup( $post, $parent_post ) {
 ?>
     <article class="<?php echo $post->post_status; ?> container mb-5 pb-sm-4">
         <div class="row">
-            <div class="col-auto hidden-md-down mt-4 mt-sm-5 push-lg-8">
-                <hr class="hr-vertical">
+            <div class="col-1 hidden-md-down mt-4 mt-sm-5 push-lg-8">
+                <hr class="hr-vertical mx-auto">
             </div>
             <div class="col-lg-3 mt-4 mt-sm-5 mt-lg-0 mb-4 mb-lg-0 push-lg-8 text-center text-md-left">
                 <?php echo get_right_sidebar_markup( $post, $parent_post ); ?>
