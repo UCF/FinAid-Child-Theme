@@ -9,6 +9,6 @@
     height: 100vh;
     overflow-x: hidden;
     overflow-y: scroll;
-    scrollbar-width: none;
+    scrollbar-width: none; //sass-lint:disable-line no-misspelled-properties
   }
 }
