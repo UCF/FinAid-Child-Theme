@@ -6,11 +6,11 @@ const gulp         = require('gulp');
 const autoprefixer = require('gulp-autoprefixer');
 const cleanCSS     = require('gulp-clean-css');
 const include      = require('gulp-include');
-const eslint       = require('gulp-eslint');
+const eslint       = require('gulp-eslint-new');
 const isFixed      = require('gulp-eslint-if-fixed');
 const babel        = require('gulp-babel');
 const rename       = require('gulp-rename');
-const sass         = require('gulp-dart-sass');
+const sass         = require('gulp-sass')(require('sass'));
 const sassLint     = require('gulp-sass-lint');
 const tap          = require('gulp-tap');
 const css          = require('css');
@@ -211,7 +211,7 @@ function getFilteredSelectors(node, filteredSelectors, allowedSelector) {
 
 // Lint all theme scss files
 gulp.task('scss-lint-theme', () => {
-  return lintSCSS(`${config.src.scssPath}/*.scss`);
+  return lintSCSS(`${config.src.scssPath}/**/*.scss`);
 });
 
 // Compile theme stylesheet
@@ -259,7 +259,7 @@ gulp.task('css', gulp.series('scss-lint-theme', 'scss-build-theme', 'scss-build-
 
 // Run eslint on js files in src.jsPath
 gulp.task('es-lint-theme', () => {
-  return lintJS([`${config.src.jsPath}/*.js`], config.src.jsPath);
+  return lintJS([`${config.src.jsPath}/**/*.js`], config.src.jsPath);
 });
 
 // Concat and uglify js files through babel
