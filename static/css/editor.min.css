@@ -1,1 +1,1 @@
-.small,small{font-size:80%}.table{font-size:.75rem}@media (min-width:768px){.table{font-size:.8rem}}
+.small,small{font-size:max(.7rem,.7em)}.table{font-size:.75rem}@media (min-width:768px){.table{font-size:.8rem}}
