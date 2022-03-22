@@ -2,20 +2,22 @@
 // Icon lists
 //
 
+@use 'sass:math';
+
 .icon-list {
   list-style-type: none;
-  margin-left: -($icon-list-bullet-size / $icon-list-bullet-width-multiplier);
+  margin-left: -(math.div($icon-list-bullet-size, $icon-list-bullet-width-multiplier));
   padding-left: 0;
 
   @include media-breakpoint-up(md) {
-    margin-left: -($icon-list-bullet-size-md / $icon-list-bullet-width-multiplier);
+    margin-left: -(math.div($icon-list-bullet-size-md, $icon-list-bullet-width-multiplier));
   }
 
   &.icon-list-lg {
-    margin-left: -($icon-list-lg-bullet-size / $icon-list-lg-bullet-width-multiplier);
+    margin-left: -(math.div($icon-list-lg-bullet-size, $icon-list-lg-bullet-width-multiplier));
 
     @include media-breakpoint-up(md) {
-      margin-left: -($icon-list-lg-bullet-size-md / $icon-list-lg-bullet-width-multiplier);
+      margin-left: -(math.div($icon-list-lg-bullet-size-md, $icon-list-lg-bullet-width-multiplier));
     }
   }
 }
@@ -61,8 +63,8 @@
   font-weight: bold;
   height: $icon-list-bullet-size;
   line-height: $icon-list-bullet-size;
-  margin-left: ( ($icon-list-bullet-size * $icon-list-bullet-width-multiplier) - $icon-list-bullet-size ) / 2;
-  margin-right: ( ($icon-list-bullet-size * $icon-list-bullet-width-multiplier) - $icon-list-bullet-size ) / 2;
+  margin-left: ( ($icon-list-bullet-size * $icon-list-bullet-width-multiplier) - $icon-list-bullet-size ) * .5;
+  margin-right: ( ($icon-list-bullet-size * $icon-list-bullet-width-multiplier) - $icon-list-bullet-size ) * .5;
   text-align: center;
   width: $icon-list-bullet-size;
 
@@ -74,8 +76,8 @@
   @include media-breakpoint-up(md) {
     height: $icon-list-bullet-size-md;
     line-height: $icon-list-bullet-size-md;
-    margin-left: ( ($icon-list-bullet-size-md * $icon-list-bullet-width-multiplier) - $icon-list-bullet-size-md ) / 2;
-    margin-right: ( ($icon-list-bullet-size-md * $icon-list-bullet-width-multiplier) - $icon-list-bullet-size-md ) / 2;
+    margin-left: ( ($icon-list-bullet-size-md * $icon-list-bullet-width-multiplier) - $icon-list-bullet-size-md ) * .5;
+    margin-right: ( ($icon-list-bullet-size-md * $icon-list-bullet-width-multiplier) - $icon-list-bullet-size-md ) * .5;
     width: $icon-list-bullet-size-md;
   }
 
@@ -83,16 +85,16 @@
     font-size: $font-size-xs * $icon-list-lg-bullet-width-multiplier; // reduce font size a bit
     height: $icon-list-lg-bullet-size;
     line-height: $icon-list-lg-bullet-size;
-    margin-left: ( ($icon-list-lg-bullet-size * $icon-list-lg-bullet-width-multiplier) - $icon-list-lg-bullet-size ) / 2;
-    margin-right: ( ($icon-list-lg-bullet-size * $icon-list-lg-bullet-width-multiplier) - $icon-list-lg-bullet-size ) / 2;
+    margin-left: ( ($icon-list-lg-bullet-size * $icon-list-lg-bullet-width-multiplier) - $icon-list-lg-bullet-size ) * .5;
+    margin-right: ( ($icon-list-lg-bullet-size * $icon-list-lg-bullet-width-multiplier) - $icon-list-lg-bullet-size ) * .5;
     width: $icon-list-lg-bullet-size;
 
     @include media-breakpoint-up(md) {
       font-size: $font-size-sm * $icon-list-lg-bullet-width-multiplier;
       height: $icon-list-lg-bullet-size-md;
       line-height: $icon-list-lg-bullet-size-md;
-      margin-left: ( ($icon-list-lg-bullet-size-md * $icon-list-lg-bullet-width-multiplier) - $icon-list-lg-bullet-size-md ) / 2;
-      margin-right: ( ($icon-list-lg-bullet-size-md * $icon-list-lg-bullet-width-multiplier) - $icon-list-lg-bullet-size-md) / 2;
+      margin-left: ( ($icon-list-lg-bullet-size-md * $icon-list-lg-bullet-width-multiplier) - $icon-list-lg-bullet-size-md ) * .5;
+      margin-right: ( ($icon-list-lg-bullet-size-md * $icon-list-lg-bullet-width-multiplier) - $icon-list-lg-bullet-size-md) * .5;
       width: $icon-list-lg-bullet-size-md;
     }
   }
@@ -156,14 +158,14 @@
   .icon-list-item-heading + & {
     flex: 0 0 100%;
     max-width: 100%;
-    padding-left: $icon-list-bullet-size / $icon-list-bullet-width-multiplier;
+    padding-left: math.div($icon-list-bullet-size, $icon-list-bullet-width-multiplier);
 
     @include media-breakpoint-up(md) {
       padding-left: $icon-list-bullet-size-md * $icon-list-bullet-width-multiplier;
     }
 
     .icon-list-lg & {
-      padding-left: $icon-list-lg-bullet-size / $icon-list-lg-bullet-width-multiplier;
+      padding-left: math.div($icon-list-lg-bullet-size, $icon-list-lg-bullet-width-multiplier);
 
       @include media-breakpoint-up(md) {
         padding-left: $icon-list-lg-bullet-size-md * $icon-list-lg-bullet-width-multiplier;
