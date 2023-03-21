@@ -1,0 +1,8 @@
+{
+    "name": "ucf/finaid-child-theme",
+    "description": "WordPress theme for the UCF Office of Student Financial Assistance website.  Built as a child theme of the UCF WordPress Theme, using the Athena Framework.",
+    "type": "wordpress-theme",
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}
